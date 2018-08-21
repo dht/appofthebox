@@ -1,0 +1,31 @@
+.Panel-container {
+  width: 240px;
+  border: 1px solid gray;
+  background-color: #333;
+  color: #ccc;
+  padding: 5px; }
+  .Panel-container .headers {
+    font-size: 13px;
+    padding: 2px 0;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    color: #aaa; }
+  .Panel-container .content {
+    padding: 10px 5px 5px; }
+  .Panel-container .top {
+    background-color: #222;
+    height: 20px; }
+  .Panel-container .actions {
+    display: flex; }
+  .Panel-container .tab-inner-page {
+    min-height: 500px; }
+
+.rc-tabs-nav-container {
+  padding-left: 0 !important;
+  padding-right: 0 !important; }
+
+.rc-tabs-tab-arrow-show, .rc-tabs-tab-btn-disabled {
+  display: none !important; }
+
+.rc-tabs-tab {
+  margin-right: 0 !important; }

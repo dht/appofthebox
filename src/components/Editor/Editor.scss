@@ -1,0 +1,26 @@
+.Editor-container {
+    flex:1;
+    background-color:#fefffe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .canvas {
+        width:320px;
+        height:200px;
+        border:1px solid gray;
+        position: relative;
+
+        .phone-name {
+            position: absolute;
+            top:-20px;
+            left:0;
+        }
+        .phone-viewport {
+            position: absolute;
+            top:-20px;
+            right:0;
+            color:orange;
+        }
+    }
+}

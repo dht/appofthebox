@@ -1,0 +1,19 @@
+.Properties-container {
+  max-height: 540px;
+  overflow: auto;
+  padding-bottom: 10px; }
+  .Properties-container .Property-container {
+    display: flex; }
+    .Properties-container .Property-container .key {
+      font-size: 14px;
+      flex: 1;
+      cursor: pointer; }
+      .Properties-container .Property-container .key:hover {
+        color: orange; }
+    .Properties-container .Property-container .value {
+      font-size: 15px;
+      background-color: #333;
+      color: #ccc;
+      width: 80px;
+      border: none;
+      padding: 2px 5px; }

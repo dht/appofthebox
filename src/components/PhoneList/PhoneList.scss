@@ -1,0 +1,62 @@
+.PhoneList-container {
+  width: 120px;
+  text-align: center;
+  overflow: auto;
+
+  .inner {
+    .phone {
+      border: 1px solid gray;
+      border-bottom-color: transparent;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 3px;
+      cursor: pointer;
+      position: relative; 
+
+      .image {
+        width: 50px;
+        height: 50px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center center;
+      }
+
+      .title {
+        color: #333;
+        font-size: 13px;
+      }
+
+      .pixels {
+        color: gray;
+        font-size: 7px;
+      }
+
+      .viewport {
+        color: orange;
+        font-size: 11px;
+      }
+
+      .popularity {
+          position: absolute;
+          background-color:goldenrod;
+          width:14px; 
+          height:14px;
+          border-radius: 7px;
+          color:white;
+          font-size:12px;
+          right:5px;
+          top:5px;
+      }
+
+      &:hover {
+        background-color: lighten(orange, 30%);
+
+        .viewport {
+          color:orangered;
+        }
+      }
+    }
+  }
+}
