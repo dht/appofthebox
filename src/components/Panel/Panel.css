@@ -17,6 +17,10 @@
     height: 20px; }
   .Panel-container .actions {
     display: flex; }
+  .Panel-container .properties {
+    padding: 0; }
+  .Panel-container .settings {
+    padding: 0; }
   .Panel-container .tab-inner-page {
     min-height: 500px; }
 
