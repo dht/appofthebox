@@ -90,7 +90,7 @@ const state = {
       }
     }
   },
-  resolutions: {
+  phoneResolutions: {
     1: {
       id: 1,
       name: "320 x 568",

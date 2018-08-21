@@ -3,10 +3,11 @@ import {connect} from "react-redux";
 import App from './App';
 import {loadApp, autosave} from "../reducers/app_thunks";
 import * as api from "../utils/firebase";
-import {currentSelector} from "../selectors/selectors";
+import {isLoadingSelector} from "../selectors/selectors";
 
 const mapStateToProps = (state, ownProps) => {
         return {
+            isRunning: isLoadingSelector(state),
         };
 }
 

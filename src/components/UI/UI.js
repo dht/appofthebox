@@ -35,7 +35,7 @@ export class IconButton extends Component {
     const { icon, label } = this.props;
     return (
       <div className="IconButton-container">
-        <i class="icon material-icons">{icon}</i>
+        <i className="icon material-icons">{icon}</i>
         <div className="label">{label}</div>
       </div>
     );
@@ -52,7 +52,7 @@ export class Icon extends Component {
 
     return (
       <div className={className} style={{ color, backgroundColor }}>
-        <i class="icon material-icons">{icon}</i>
+        <i className="icon material-icons">{icon}</i>
         <div className="overlay"></div>
       </div>
     );

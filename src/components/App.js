@@ -1,25 +1,30 @@
-import React, { Component } from 'react';
-import PhoneList from './PhoneList/PhoneList';
-import Editor from './Editor/Editor';
-import './App.css';
+import React, { Component } from "react";
+import PhoneList from "./PhoneList/PhoneList";
+import Editor from "./Editor/Editor";
+import Clock from "./Clock/Clock";
+import "./App.css";
 
 class App extends Component {
-  state ={
-    phone: {}
-  }
+    state = {
+        phone: {}
+    };
 
-  setPhone = (phone) => this.setState({phone});
-  
-  render() {
-    const {phone} = this.state;
+    setPhone = phone => this.setState({ phone });
 
-    return (
-      <div className="App">
-        <PhoneList onClick={this.setPhone} />
-        <Editor phone={phone} />
-      </div>
-    );
-  }
+    render() {
+        const { isRunning } = this.props;
+        const { phone } = this.state;
+
+        return (
+            <div className="App">
+                <div className="clock">
+                    <Clock isRunning={isRunning} />
+                </div>
+                <PhoneList onClick={this.setPhone} />
+                <Editor phone={phone} />
+            </div>
+        );
+    }
 }
 
 export default App;

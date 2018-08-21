@@ -1,6 +1,6 @@
 import {initialStateEditor, initialStateBucket} from "./initialState";
 
-export const editorState = (state, action) => {
+export const editorState = (state = initialStateEditor, action) => {
     switch(action.type) {
       case "SET_EDITORSTATE":
         return action.value;
@@ -19,7 +19,7 @@ export const editorState = (state, action) => {
   export const setEditorState = (value) => ({type: "SET_EDITORSTATE", value});
   export const patchEditorState = (value) => ({type: "PATCH_EDITORSTATE", value})
   
-  export const bucket = (state, action) => {
+  export const bucket = (state = initialStateBucket, action) => {
     switch(action.type) {
       case "SET_BUCKET":
         return action.value;
@@ -596,27 +596,27 @@ export const editorState = (state, action) => {
   export const setData = (bucketId, componentId, elementId, value) => ({type: "SET_BUCKET_COMPONENT_ELEMENT_DATA", bucketId, componentId, elementId, value});
   export const patchData = (bucketId, componentId, elementId, value) => ({type: "PATCH_BUCKET_COMPONENT_ELEMENT_DATA", bucketId, componentId, elementId, value})
   
-  export const resolution = (state, action) => {
+  export const phoneResolution = (state, action) => {
     switch(action.type) {
-      case "SET_RESOLUTION":
+      case "SET_PHONERESOLUTION":
         return action.value;
         
-      case "PATCH_RESOLUTION":
+      case "PATCH_PHONERESOLUTION":
         return {
           ...state,
           ...action.value
         };
         
-    case "SET_RESOLUTION_PIXEL":
-    case "PATCH_RESOLUTION_PIXEL":
+    case "SET_PHONERESOLUTION_PIXEL":
+    case "PATCH_PHONERESOLUTION_PIXEL":
         
       return {
           ...state,
           pixels: pixels(state.pixels, action)
         };
         
-    case "SET_RESOLUTION_VIEWPORT":
-    case "PATCH_RESOLUTION_VIEWPORT":
+    case "SET_PHONERESOLUTION_VIEWPORT":
+    case "PATCH_PHONERESOLUTION_VIEWPORT":
         
       return {
           ...state,
@@ -628,30 +628,30 @@ export const editorState = (state, action) => {
     }
   }
   
-  export const resolutions = (state, action) => {
+  export const phoneResolutions = (state, action) => {
     let newState;
     
     switch(action.type) {
-      case "SET_RESOLUTIONS":
+      case "SET_PHONERESOLUTIONS":
         return action.value;
         
       
-    case "SET_RESOLUTION_PIXEL":
-    case "PATCH_RESOLUTION_PIXEL":
+    case "SET_PHONERESOLUTION_PIXEL":
+    case "PATCH_PHONERESOLUTION_PIXEL":
         
-    case "SET_RESOLUTION_VIEWPORT":
-    case "PATCH_RESOLUTION_VIEWPORT":
+    case "SET_PHONERESOLUTION_VIEWPORT":
+    case "PATCH_PHONERESOLUTION_VIEWPORT":
         
-      case "SET_RESOLUTION":
-      case "PATCH_RESOLUTION":
+      case "SET_PHONERESOLUTION":
+      case "PATCH_PHONERESOLUTION":
         return {
           ...state,
-          [action.resolutionId]: resolution(state[action.resolutionId], action)
+          [action.phoneResolutionId]: phoneResolution(state[action.phoneResolutionId], action)
         };
         
-      case "DELETE_RESOLUTION":
+      case "DELETE_PHONERESOLUTION":
         newState = { ...state };
-        delete newState[action.resolutionId];
+        delete newState[action.phoneResolutionId];
         return newState;
       
       default:
@@ -659,17 +659,17 @@ export const editorState = (state, action) => {
     }
   }
   
-  export const setResolutions = (value) => ({type: "SET_RESOLUTIONS", value});
-  export const setResolution = (resolutionId, value) => ({type: "SET_RESOLUTION", resolutionId, value})
-  export const patchResolution = (resolutionId, value) => ({type: "PATCH_RESOLUTION", resolutionId, value})
-  export const deleteResolution = (resolutionId, value) => ({type: "DELETE_RESOLUTION", resolutionId, value})
+  export const setPhoneResolutions = (value) => ({type: "SET_PHONERESOLUTIONS", value});
+  export const setPhoneResolution = (phoneResolutionId, value) => ({type: "SET_PHONERESOLUTION", phoneResolutionId, value})
+  export const patchPhoneResolution = (phoneResolutionId, value) => ({type: "PATCH_PHONERESOLUTION", phoneResolutionId, value})
+  export const deletePhoneResolution = (phoneResolutionId, value) => ({type: "DELETE_PHONERESOLUTION", phoneResolutionId, value})
   
   export const pixels = (state, action) => {
     switch(action.type) {
-      case "SET_RESOLUTION_PIXELS":
+      case "SET_PHONERESOLUTION_PIXELS":
         return action.value;
         
-      case "PATCH_RESOLUTION_PIXELS":
+      case "PATCH_PHONERESOLUTION_PIXELS":
         return {
           ...state,
           ...action.value
@@ -680,15 +680,15 @@ export const editorState = (state, action) => {
     }
   }
   
-  export const setPixels = (resolutionId, value) => ({type: "SET_RESOLUTION_PIXELS", resolutionId, value});
-  export const patchPixels = (resolutionId, value) => ({type: "PATCH_RESOLUTION_PIXELS", resolutionId, value})
+  export const setPixels = (phoneResolutionId, value) => ({type: "SET_PHONERESOLUTION_PIXELS", phoneResolutionId, value});
+  export const patchPixels = (phoneResolutionId, value) => ({type: "PATCH_PHONERESOLUTION_PIXELS", phoneResolutionId, value})
   
   export const viewport = (state, action) => {
     switch(action.type) {
-      case "SET_RESOLUTION_VIEWPORT":
+      case "SET_PHONERESOLUTION_VIEWPORT":
         return action.value;
         
-      case "PATCH_RESOLUTION_VIEWPORT":
+      case "PATCH_PHONERESOLUTION_VIEWPORT":
         return {
           ...state,
           ...action.value
@@ -699,8 +699,8 @@ export const editorState = (state, action) => {
     }
   }
   
-  export const setViewport = (resolutionId, value) => ({type: "SET_RESOLUTION_VIEWPORT", resolutionId, value});
-  export const patchViewport = (resolutionId, value) => ({type: "PATCH_RESOLUTION_VIEWPORT", resolutionId, value})
+  export const setViewport = (phoneResolutionId, value) => ({type: "SET_PHONERESOLUTION_VIEWPORT", phoneResolutionId, value});
+  export const patchViewport = (phoneResolutionId, value) => ({type: "PATCH_PHONERESOLUTION_VIEWPORT", phoneResolutionId, value})
   
   export const phone = (state, action) => {
     switch(action.type) {
@@ -711,22 +711,6 @@ export const editorState = (state, action) => {
         return {
           ...state,
           ...action.value
-        };
-        
-    case "SET_PHONE_PIXEL":
-    case "PATCH_PHONE_PIXEL":
-        
-      return {
-          ...state,
-          pixels: pixels(state.pixels, action)
-        };
-        
-    case "SET_PHONE_VIEWPORT":
-    case "PATCH_PHONE_VIEWPORT":
-        
-      return {
-          ...state,
-          viewport: viewport(state.viewport, action)
         };
         
       default:
@@ -742,12 +726,6 @@ export const editorState = (state, action) => {
         return action.value;
         
       
-    case "SET_PHONE_PIXEL":
-    case "PATCH_PHONE_PIXEL":
-        
-    case "SET_PHONE_VIEWPORT":
-    case "PATCH_PHONE_VIEWPORT":
-        
       case "SET_PHONE":
       case "PATCH_PHONE":
         return {
@@ -769,43 +747,5 @@ export const editorState = (state, action) => {
   export const setPhone = (phoneId, value) => ({type: "SET_PHONE", phoneId, value})
   export const patchPhone = (phoneId, value) => ({type: "PATCH_PHONE", phoneId, value})
   export const deletePhone = (phoneId, value) => ({type: "DELETE_PHONE", phoneId, value})
-  
-  export const pixels = (state, action) => {
-    switch(action.type) {
-      case "SET_PHONE_PIXELS":
-        return action.value;
-        
-      case "PATCH_PHONE_PIXELS":
-        return {
-          ...state,
-          ...action.value
-        };
-        
-      default:
-        return state;
-    }
-  }
-  
-  export const setPixels = (phoneId, value) => ({type: "SET_PHONE_PIXELS", phoneId, value});
-  export const patchPixels = (phoneId, value) => ({type: "PATCH_PHONE_PIXELS", phoneId, value})
-  
-  export const viewport = (state, action) => {
-    switch(action.type) {
-      case "SET_PHONE_VIEWPORT":
-        return action.value;
-        
-      case "PATCH_PHONE_VIEWPORT":
-        return {
-          ...state,
-          ...action.value
-        };
-        
-      default:
-        return state;
-    }
-  }
-  
-  export const setViewport = (phoneId, value) => ({type: "SET_PHONE_VIEWPORT", phoneId, value});
-  export const patchViewport = (phoneId, value) => ({type: "PATCH_PHONE_VIEWPORT", phoneId, value})
   
   
