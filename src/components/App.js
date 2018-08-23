@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PhoneList from "./PhoneList/PhoneListContainer";
-import Editor from "./Editor/Editor";
+import Editor from "./Editor/EditorContainer";
 import Clock from "./Clock/Clock";
 import "./App.css";
 

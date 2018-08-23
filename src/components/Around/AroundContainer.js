@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
 
     return {
         elementId: data.elementId,
-        box: data.box
+        box: data.box,
     };
 };
 

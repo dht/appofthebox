@@ -31,11 +31,18 @@ export const currentResolutionIdSelector = createSelector(
     editorState => editorState.currentResolutionId
 );
 
+export const currentResolutionSelector = createSelector(
+    phoneResolutionsSelector,
+    currentResolutionIdSelector,
+    (resolutions, resolutionId) => resolutions[resolutionId]
+);
+
 export const hoverBoxSelector = createSelector(
     editorStateSelector,
     editorState => ({
         elementId: editorState.currentHoverId,
-        box: editorState.hoverBox
+        box: editorState.hoverBox,
+        rnd: editorState.rnd
     })
 );
 
@@ -43,7 +50,7 @@ export const selectedBoxSelector = createSelector(
     editorStateSelector,
     editorState => ({
         elementId: editorState.currentElementId,
-        box: editorState.selectedBox
+        box: editorState.selectedBox,
     })
 );
 
@@ -67,7 +74,9 @@ export const elementsSelector = createSelector(
             const { resolutions } = element;
 
             element.properties = crunchResolutions(resolutions, resolutionId);
-            element.localProperties = resolutions[resolutionId].properties;
+            element.localProperties = (
+                resolutions[resolutionId] || {}
+            ).properties;
 
             return element;
         });
@@ -83,7 +92,7 @@ export const elementSelector = createSelector(
         const { resolutions } = element;
 
         element.properties = crunchResolutions(resolutions, resolutionId);
-        element.localProperties = resolutions[resolutionId].properties;
+        element.localProperties = (resolutions[resolutionId] || {}).properties;
 
         return element;
     }

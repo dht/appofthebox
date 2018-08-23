@@ -20,7 +20,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(
                 patchEditorState({
                     currentHoverId: ownProps.id,
-                    hoverBox: box(ev)
+                    hoverBox: box(ev),
+                    hoverElement: element(ev),
                 })
             );
         },
@@ -28,7 +29,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(
                 patchEditorState({
                     currentElementId: ownProps.id,
-                    selectedBox: box(ev)
+                    selectedBox: box(ev),
+                    selectedElement: element(ev),
                 })
             );
         },
@@ -38,14 +40,19 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     };
 };
 
-const box = ev => {
+const element = ev => {
     let el = ev.target;
 
     if (el.tagName === "SPAN") {
         el = el.parentNode;
     }
 
-    return el.getBoundingClientRect();
+    return el;
+};
+
+
+const box = ev => {
+    return element(ev).getBoundingClientRect();
 };
 
 export default connect(

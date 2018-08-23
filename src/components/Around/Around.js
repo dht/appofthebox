@@ -5,6 +5,10 @@ import classnames from "classnames";
 export class Around extends Component {
     state = {};
 
+    componentWillReceiveProps(props) {
+        console.log('props ->', props);
+    }
+    
     style = () => {
         const { box = {} } = this.props;
 
