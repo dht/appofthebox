@@ -7,6 +7,9 @@
     font-size: 12px;
     padding-left: 6px; }
 
+.Button-container {
+  padding: 0; }
+
 .IconButton-container {
   width: 50px;
   padding: 5px;

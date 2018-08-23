@@ -31,27 +31,27 @@ export const setResolutionId = _resolutionId => {
     resolutionId = _resolutionId;
 };
 
-const editorStateRef = () => mainApp.database().ref("editorState");
-const bucketsRef = () => mainApp.database().ref("buckets");
-const bucketRef = (bucketId) => bucketsRef().child(`${bucketId}`);
-const componentsRef = (bucketId) => bucketsRef().child(`${bucketId}/components`);
-const componentRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}`);
-const viewOptionsRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/viewOptions`);
-const simulateTitlebarRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/viewOptions/simulateTitlebar`);
-const simulateTabRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/viewOptions/simulateTab`);
-const simulateListRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/viewOptions/simulateList`);
-const elementsRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements`);
-const elementRef = (bucketId, componentId, elementId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}`);
-const resolutionsRef = (bucketId, componentId, elementId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}/resolutions`);
-const resolutionRef = (bucketId, componentId, elementId, resolutionId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}/resolutions/${resolutionId}`);
-const propertiesRef = (bucketId, componentId, elementId, resolutionId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}/resolutions/${resolutionId}/properties`);
-const dataRef = (bucketId, componentId, elementId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}/data`);
-const phoneResolutionsRef = () => mainApp.database().ref("phoneResolutions");
-const phoneResolutionRef = (phoneResolutionId) => phoneResolutionsRef().child(`${phoneResolutionId}`);
-const pixelsRef = (phoneResolutionId) => phoneResolutionsRef().child(`${phoneResolutionId}/pixels`);
-const viewportRef = (phoneResolutionId) => phoneResolutionsRef().child(`${phoneResolutionId}/viewport`);
-const phonesRef = () => mainApp.database().ref("phones");
-const phoneRef = (phoneId) => phonesRef().child(`${phoneId}`);
+const editorStateRef = () => mainApp.database().ref("editorState"); // prettier-ignore
+const bucketsRef = () => mainApp.database().ref("buckets"); // prettier-ignore
+const bucketRef = (bucketId) => bucketsRef().child(`${bucketId}`); // prettier-ignore
+const componentsRef = (bucketId) => bucketsRef().child(`${bucketId}/components`); // prettier-ignore
+const componentRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}`); // prettier-ignore
+const viewOptionsRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/viewOptions`); // prettier-ignore
+const simulateTitlebarRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/viewOptions/simulateTitlebar`); // prettier-ignore
+const simulateTabRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/viewOptions/simulateTab`); // prettier-ignore
+const simulateListRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/viewOptions/simulateList`); // prettier-ignore
+const elementsRef = (bucketId, componentId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements`); // prettier-ignore
+const elementRef = (bucketId, componentId, elementId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}`); // prettier-ignore
+const resolutionsRef = (bucketId, componentId, elementId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}/resolutions`); // prettier-ignore
+const resolutionRef = (bucketId, componentId, elementId, resolutionId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}/resolutions/${resolutionId}`); // prettier-ignore
+const propertiesRef = (bucketId, componentId, elementId, resolutionId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}/resolutions/${resolutionId}/properties`); // prettier-ignore
+const dataRef = (bucketId, componentId, elementId) => bucketsRef().child(`${bucketId}/components/${componentId}/elements/${elementId}/data`); // prettier-ignore
+const phoneResolutionsRef = () => mainApp.database().ref("phoneResolutions"); // prettier-ignore
+const phoneResolutionRef = (phoneResolutionId) => phoneResolutionsRef().child(`${phoneResolutionId}`); // prettier-ignore
+const pixelsRef = (phoneResolutionId) => phoneResolutionsRef().child(`${phoneResolutionId}/pixels`); // prettier-ignore
+const viewportRef = (phoneResolutionId) => phoneResolutionsRef().child(`${phoneResolutionId}/viewport`); // prettier-ignore
+const phonesRef = () => mainApp.database().ref("phones"); // prettier-ignore
+const phoneRef = (phoneId) => phonesRef().child(`${phoneId}`); // prettier-ignore
 
 const getRef = ref => {
     return new Promise(resolve => {

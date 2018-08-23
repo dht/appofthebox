@@ -1,8 +1,10 @@
 import {combineReducers} from "redux";
 
-import { editorState, bucket } from "./appState/appState";
+import { editorState, bucket, phones, phoneResolutions } from "./appState/appState";
 
 export default combineReducers({
     editorState, 
-    bucket
+    bucket,
+    phones, 
+    phoneResolutions
 })

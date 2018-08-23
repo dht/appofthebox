@@ -3,31 +3,49 @@ import "./PhoneList.css";
 import { PhonesArrUnique } from "./phones";
 
 export class PhoneList extends Component {
-  state = {};
+    state = {};
 
-  render() {
-    return (
-      <div className="PhoneList-container">
-      <div className="inner">
-        {PhonesArrUnique.map(phone => (
-          <div className="phone" key={phone.id} onClick={() => this.props.onClick(phone)}>
-          <div className="image" style={{backgroundImage:`url(/images/${phone.imageName})`}}></div>
-            <div className="name">{phone.name}</div>
-            <div className="viewport">
-              {phone.viewport.x}x{phone.viewport.y}
+    renderItem(resolution) {
+        const { phone } = resolution || {},
+            { imageName = "", name = "" } = phone || {};
+
+        return (
+            <div
+                className="phone"
+                key={resolution.id}
+                onClick={() => this.props.onClick(resolution)}
+            >
+                <div
+                    className="image"
+                    style={{
+                        backgroundImage: `url(/images/${imageName})`
+                    }}
+                />
+                <div className="name">{name}</div>
+                <div className="viewport">
+                    {resolution.viewport.x}x{resolution.viewport.y}
+                </div>
+                <div className="pixels">
+                    {resolution.pixels.x}x{resolution.pixels.y}
+                </div>
+                {resolution.popularity ? (
+                    <div className="popularity">{resolution.popularity}</div>
+                ) : null}
             </div>
-            <div className="pixels">
-              {phone.pixels.x}x{phone.pixels.y}
+        );
+    }
+
+    render() {
+        const { resolutions } = this.props;
+
+        return (
+            <div className="PhoneList-container">
+                <div className="inner">
+                    {resolutions.map(resolution => this.renderItem(resolution))}
+                </div>
             </div>
-            {phone.popularity ? <div className="popularity">
-              {phone.popularity}
-            </div> : null}
-          </div>
-        ))}
-      </div>
-      </div>
-    );
-  }
+        );
+    }
 }
 
 export default PhoneList;

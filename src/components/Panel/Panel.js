@@ -60,7 +60,14 @@ export class Panel extends Component {
             <div className="tab-inner-page">gerg</div>
           </TabPane>
           <TabPane tab="Library" key="3" disabled={false}>
-            <div className="tab-inner-page">gerg</div>
+            <div className="tab-inner-page">
+            <div className="actions">
+                <IconButton icon="colorize" label="Colors" />
+                <IconButton icon="view_list" label="Data" />
+                <IconButton icon="color_lens" label="Theme" />
+                <IconButton icon="cloud_download" label="Export" />
+              </div>
+            </div>
           </TabPane>
         </Tabs>
       </div>

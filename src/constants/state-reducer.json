@@ -7,85 +7,83 @@
         "currentPhoneId": 1,
         "currentResolutionId": 1
     },
-    "buckets": {
-        "804acb84": {
-            "id": "804acb84",
-            "colors": "{}",
-            "theme": "{}",
-            "datasets": "{}",
-            "components": {
-                "button": {
-                    "id": "button",
-                    "name": "Button",
-                    "viewOptions": {
-                        "simulateTitlebar": {
-                            "on": true
+    "bucket": {
+        "id": 1,
+        "colors": "{}",
+        "theme": "{}",
+        "datasets": "{}",
+        "components": {
+            "1": {
+                "id": 1,
+                "name": "Button",
+                "viewOptions": {
+                    "simulateTitlebar": {
+                        "on": true
+                    },
+                    "simulateTab": {
+                        "on": true
+                    },
+                    "simulateList": {
+                        "on": true,
+                        "component": "list",
+                        "datasetId": "",
+                        "locale": "en"
+                    }
+                },
+                "elements": {
+                    "1": {
+                        "parentId": 0,
+                        "id": 1,
+                        "type": "VIEW_HORIZONTAL",
+                        "resolutions": {
+                            "1": {
+                                "id": 1,
+                                "properties": {
+                                    "backgroundColor": "green",
+                                    "flex": 1,
+                                    "alignItems": "center",
+                                    "justifyContent": "stretch"
+                                }
+                            }
                         },
-                        "simulateTab": {
-                            "on": true
-                        },
-                        "simulateList": {
-                            "on": true,
-                            "component": "list",
-                            "datasetId": "",
-                            "locale": "en"
+                        "data": {
+                            "_value": "hi"
                         }
                     },
-                    "elements": {
-                        "1": {
-                            "parentId": 0,
-                            "id": 1,
-                            "type": "VIEW_HORIZONTAL",
-                            "resolutions": {
-                                "1": {
-                                    "id": 1,
-                                    "properties": {
-                                        "backgroundColor": "green",
-                                        "flex": 1,
-                                        "alignItems": "center",
-                                        "justifyContent": "stretch"
-                                    }
+                    "2": {
+                        "parentId": 1,
+                        "id": 2,
+                        "type": "TEXT",
+                        "resolutions": {
+                            "1": {
+                                "id": 1,
+                                "properties": {
+                                    "fontSize": 14,
+                                    "color": "yellow",
+                                    "flex": 1
                                 }
-                            },
-                            "data": {
-                                "_value": "hi"
                             }
                         },
-                        "2": {
-                            "parentId": 1,
-                            "id": 2,
-                            "type": "TEXT",
-                            "resolutions": {
-                                "1": {
-                                    "id": 1,
-                                    "properties": {
-                                        "fontSize": 14,
-                                        "color": "yellow",
-                                        "flex": 1
-                                    }
+                        "data": {
+                            "_value": "welcome"
+                        }
+                    },
+                    "3": {
+                        "parentId": 1,
+                        "id": 3,
+                        "type": "TEXT",
+                        "resolutions": {
+                            "1": {
+                                "id": 1,
+                                "properties": {
+                                    "fontSize": 14,
+                                    "color": "pink",
+                                    "flex": 1
                                 }
-                            },
-                            "data": {
-                                "_value": "welcome"
                             }
                         },
-                        "3": {
-                            "parentId": 1,
-                            "id": 3,
-                            "type": "TEXT",
-                            "resolutions": {
-                                "1": {
-                                    "id": 1,
-                                    "properties": {
-                                        "fontSize": 14,
-                                        "color": "pink",
-                                        "flex": 1
-                                    }
-                                }
-                            },
-                            "data": {
-                                "_value": "here"
-                            }
+                        "data": {
+                            "_value": "here"
                         }
                     }
                 }

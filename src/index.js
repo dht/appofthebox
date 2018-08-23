@@ -22,9 +22,7 @@ const ToCanvas = (props) => {
         {params} = match || {},
         {bucketId} = params;
 
-    // console.log('toCanvas', true);
-
-    return  <Redirect to={`/${bucketId}/_/1`}/>
+    return  <Redirect to={`/${bucketId}/_`}/>
 }
 
 ReactDOM.render(<Provider store={store}>
@@ -32,7 +30,7 @@ ReactDOM.render(<Provider store={store}>
         <div id="router">
         <Route exact path="/" component={CreateNew}/>
         <Route exact path="/:bucketId/" component={ToCanvas}/>
-        <Route exact path="/:bucketId/:componentId/:resolutionId" component={App}/>
+        <Route exact path="/:bucketId/:componentId" component={App}/>
         </div>
     </Router>
     </Provider>
