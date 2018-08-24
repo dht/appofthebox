@@ -9,7 +9,9 @@
     padding: 2px 0;
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
-    color: #aaa; }
+    color: #aaa;
+    background-color: #242424;
+    text-indent: 10px; }
   .Panel-container .content {
     padding: 10px 5px 5px; }
   .Panel-container .top {
@@ -28,8 +30,15 @@
   padding-left: 0 !important;
   padding-right: 0 !important; }
 
-.rc-tabs-tab-arrow-show, .rc-tabs-tab-btn-disabled {
+.rc-tabs-tab-arrow-show,
+.rc-tabs-tab-btn-disabled {
   display: none !important; }
 
 .rc-tabs-tab {
   margin-right: 0 !important; }
+
+.rc-tabs-bottom {
+  border-top: none !important; }
+
+.rc-tabs-bar {
+  border-top: 1px solid #555 !important; }

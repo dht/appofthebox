@@ -1,16 +1,21 @@
 import React from "react";
 import {connect} from "react-redux";
 import Properties from './Properties';
+import * as selectors from "../../selectors/selectors";
+import * as thunks from "../../reducers/app_thunks";
 
 const mapStateToProps = (state, ownProps) => {
     return {
+        properties: selectors.propertiesSelector(state)
     };
-}
+};
+
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        method: () => {
-        },
+        onValue: (value) => {
+            dispatch(thunks.patchProperty(value));
+          }
     }
 }
 

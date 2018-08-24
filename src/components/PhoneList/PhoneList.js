@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./PhoneList.css";
 import { PhonesArrUnique } from "./phones";
-
+import classnames from "classnames";
 export class PhoneList extends Component {
     state = {};
 
@@ -9,9 +9,13 @@ export class PhoneList extends Component {
         const { phone } = resolution || {},
             { imageName = "", name = "" } = phone || {};
 
+        const isSelected = resolution.id === this.props.currentResolutionId;
+
+        const className = classnames("phone", { selected: isSelected });
+
         return (
             <div
-                className="phone"
+                className={className}
                 key={resolution.id}
                 onClick={() => this.props.onClick(resolution)}
             >

@@ -1,28 +1,35 @@
 .Properties-container {
-    max-height:540px;
+    max-height: 540px;
     overflow: auto;
-    padding-bottom:10px;
+    padding-bottom: 10px;
 
     .Property-container {
         display: flex;
+        align-items: baseline;
+
+        &:hover {
+            background-color: #444;
+        }
 
         .key {
-            font-size:14px;
-            flex:1;
+            font-size: 14px;
+            flex: 1;
+            text-indent: 5px;
             cursor: pointer;
+            position: relative;
 
             &:hover {
-                color:orange;
+                color: orange;
             }
         }
 
         .value {
-            font-size:15px;
-            background-color:#333;
-            color:#ccc;
-            width:80px;
-            border:none;
-            padding:2px 5px;
+            font-size: 15px;
+            background-color: transparent;
+            color: #ccc;
+            width: 80px;
+            border: none;
+            padding: 2px 5px;
         }
     }
 }

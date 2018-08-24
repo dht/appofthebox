@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import Element from "./Element";
 import { elementsSelector } from "../../selectors/selectors";
 import { patchEditorState } from "../../reducers/appState/appState";
+import * as api from "../../utils/firebase";
 
 const mapStateToProps = (state, ownProps) => {
     const elements = elementsSelector(state),
-        element = elements[ownProps.id];
+        element = elements[ownProps.id - 1];
 
     return {
         elements,
@@ -17,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         onMouseEnter: ev => {
+            ev.stopPropagation();
             dispatch(
                 patchEditorState({
                     currentHoverId: ownProps.id,
@@ -26,6 +28,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             );
         },
         onClick: ev => {
+            console.log('ownProps.id ->', ownProps.id);
+            ev.stopPropagation();
+
+            api.setElementId(ownProps.id);
+            
             dispatch(
                 patchEditorState({
                     currentElementId: ownProps.id,

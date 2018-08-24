@@ -4,5 +4,8 @@ export const arrayToObject = (arr = []) =>
         return output;
     }, {});
 
-export const objectToArray = (obj = {}) =>
-    Object.keys(obj).map(key => obj[key]);
+export const objectToArray = obj => {
+    if (!obj) return [];
+    if (Array.isArray(obj)) return obj;
+    return Object.keys(obj).map(key => obj[key]);
+};

@@ -6,7 +6,6 @@ export class Around extends Component {
     state = {};
 
     componentWillReceiveProps(props) {
-        console.log('props ->', props);
     }
     
     style = () => {

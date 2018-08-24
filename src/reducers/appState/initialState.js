@@ -2,11 +2,31 @@
 
 export const initialStateEditor = {
     isLoading: false,
+    currentBucketId: "",
     currentComponentId: 1,
     currentElementId: 1,
     currentHoverId: 1,
     currentResolutionId: 1,
     currentPhoneId: 1
+};
+
+export const initialPhoneResolutions = {
+    1: {
+        id: 1,
+        name: "320 x 568",
+        pixels: { x: 640, y: 1336 },
+        viewport: { x: 320, y: 568 },
+        examplePhoneId: 8
+    }
+};
+
+export const initialPhones = {
+    8: {
+        id: 8,
+        name: "iPhone 5",
+        imageName: "iphone5.png",
+        resolutionId: 1
+    }
 };
 
 export const initialStateBucket = {
@@ -15,7 +35,7 @@ export const initialStateBucket = {
     theme: "{}",
     datasets: "{}",
     components: {
-        "button": {
+        button: {
             id: "button",
             name: "Button",
             viewOptions: {

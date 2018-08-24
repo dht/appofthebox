@@ -15,6 +15,8 @@ export class Element extends Component {
         const { element } = this.props,
             { type, properties } = element;
 
+        console.log("element ->", element);
+
         return parseStyle(properties, type);
     };
 
@@ -33,11 +35,13 @@ export class Element extends Component {
 
         return elements
             .filter(element => element && element.parentId === id)
-            .map(element => <_Element id={element.id} />);
+            .map(element => <_Element id={element.id} key={element.id} />);
     };
 
     render() {
         const { element } = this.props;
+
+        console.log('this.props.id ->', this.props.id);
 
         if (!element) return null;
 

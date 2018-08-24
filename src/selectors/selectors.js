@@ -1,8 +1,9 @@
 import { createSelector } from "reselect";
 import { methodsToGlobal } from "../utils/code";
-import { arrayToObject } from "../utils/map";
+import { arrayToObject, objectToArray } from "../utils/map";
 import { crunchResolutions } from "../utils/style";
 import clone from "clone";
+import { PropertiesArray } from "../constants/allProperties";
 
 export const editorStateSelector = state => state.editorState || {};
 
@@ -37,22 +38,6 @@ export const currentResolutionSelector = createSelector(
     (resolutions, resolutionId) => resolutions[resolutionId]
 );
 
-export const hoverBoxSelector = createSelector(
-    editorStateSelector,
-    editorState => ({
-        elementId: editorState.currentHoverId,
-        box: editorState.hoverBox,
-        rnd: editorState.rnd
-    })
-);
-
-export const selectedBoxSelector = createSelector(
-    editorStateSelector,
-    editorState => ({
-        elementId: editorState.currentElementId,
-        box: editorState.selectedBox,
-    })
-);
 
 export const componentSelector = createSelector(
     bucketSelector,
@@ -60,16 +45,20 @@ export const componentSelector = createSelector(
     (bucket, componentId) => {
         const components = bucket.components || {};
         const component = components[componentId] || {};
+
         return component;
     }
 );
 
-export const elementsSelector = createSelector(
+export const elementsArraySelector = createSelector(
     componentSelector,
-    currentResolutionIdSelector,
-    (component, resolutionId) => {
-        const elements = clone(component.elements || []);
+    (component) => objectToArray(component.elements) || []
+);
 
+export const elementsSelector = createSelector(
+    elementsArraySelector,
+    currentResolutionIdSelector,
+    (elements, resolutionId) => {
         return elements.map(element => {
             const { resolutions } = element;
 
@@ -89,7 +78,7 @@ export const elementSelector = createSelector(
     currentResolutionIdSelector,
     (elements, elementId, resolutionId) => {
         const element = clone(elements[elementId] || {});
-        const { resolutions } = element;
+        const { resolutions = [] } = element;
 
         element.properties = crunchResolutions(resolutions, resolutionId);
         element.localProperties = (resolutions[resolutionId] || {}).properties;
@@ -97,6 +86,23 @@ export const elementSelector = createSelector(
         return element;
     }
 );
+
+export const propertiesSelector = createSelector(
+    elementSelector,
+    (element) => {
+
+        const {properties = {} , localProperties = {}} = element;
+        
+        return PropertiesArray.map(property => {
+            return {
+                key: property,
+                value: properties[property],
+                placeholder: localProperties[property]
+            }
+        },[]);
+    }
+);
+
 
 export const resolutionsSelector = createSelector(
     phonesSelector,
@@ -123,4 +129,22 @@ export const resolutionsSelector = createSelector(
                 return xBigger ? 1 : -1;
             });
     }
+);
+
+
+export const hoverBoxSelector = createSelector(
+    editorStateSelector,
+    editorState => ({
+        elementId: editorState.currentHoverId,
+        box: editorState.hoverBox,
+        rnd: editorState.rnd
+    })
+);
+
+export const selectedBoxSelector = createSelector(
+    editorStateSelector,
+    editorState => ({
+        elementId: editorState.currentElementId,
+        box: editorState.selectedBox,
+    })
 );

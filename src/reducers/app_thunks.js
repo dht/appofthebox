@@ -10,7 +10,6 @@ export const loadApp = (bucketId, componentId, resolutionId) => {
             actions.patchEditorState({
                 isLoading: true,
                 currentBucketId: bucketId,
-                currentPhoneId: 0,
                 currentElementId: 1
             })
         );
@@ -18,6 +17,10 @@ export const loadApp = (bucketId, componentId, resolutionId) => {
         const phones = await api.getPhones();
         const resolutions = await api.getResolutions();
         const bucket = await api.getBucket();
+
+        api.setBucketId(bucketId);
+        api.setComponentId(componentId);
+        api.setResolutionId(resolutionId);
 
         dispatch(actions.setBucket(bucket));
         dispatch(actions.setPhoneResolutions(arrayToObject(resolutions)));
@@ -32,27 +35,49 @@ export const loadApp = (bucketId, componentId, resolutionId) => {
     };
 };
 
+export const patchProperty = value => {
+    return (dispatch, getState) => {
+        const state = getState(),
+            { editorState } = state,
+            {
+                currentBucketId,
+                currentComponentId,
+                currentElementId,
+                currentResolutionId
+            } = editorState;
+
+        dispatch(
+            actions.patchProperties(
+                currentBucketId,
+                currentComponentId,
+                currentElementId,
+                currentResolutionId,
+                value
+            )
+        );
+    };
+};
+
 export const refreshBoxes = () => {
     return (dispatch, getState) => {
         const state = getState(),
             { editorState } = state,
-            { hoverElement, selectedElement } = editorState;
+            { selectedElement } = editorState;
 
         dispatch(
             actions.patchEditorState({
-                selectedBox: {},
-                hoverBox: {}
+                selectedBox: {}
             })
         );
 
+        if (!selectedElement) return;
+
         setTimeout(() => {
             const selectedBox = selectedElement.getBoundingClientRect();
-            const hoverBox = hoverElement.getBoundingClientRect();
 
             dispatch(
                 actions.patchEditorState({
-                    selectedBox: selectedBox,
-                    hoverBox: hoverElement
+                    selectedBox: selectedBox
                 })
             );
         }, 300);

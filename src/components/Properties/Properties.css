@@ -3,16 +3,21 @@
   overflow: auto;
   padding-bottom: 10px; }
   .Properties-container .Property-container {
-    display: flex; }
+    display: flex;
+    align-items: baseline; }
+    .Properties-container .Property-container:hover {
+      background-color: #444; }
     .Properties-container .Property-container .key {
       font-size: 14px;
       flex: 1;
-      cursor: pointer; }
+      text-indent: 5px;
+      cursor: pointer;
+      position: relative; }
       .Properties-container .Property-container .key:hover {
         color: orange; }
     .Properties-container .Property-container .value {
       font-size: 15px;
-      background-color: #333;
+      background-color: transparent;
       color: #ccc;
       width: 80px;
       border: none;

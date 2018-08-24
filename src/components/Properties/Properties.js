@@ -1,25 +1,31 @@
 import React, { Component } from "react";
 import "./Properties.css";
-import { PropertiesArray } from "./allProperties";
 import { Property } from "./Property";
+import { PropertiesArray } from "../../constants/allProperties";
 
 export class Properties extends Component {
-  state = {};
+    state = {};
 
-  focus = () => {
-    this.refs.input1.focus();
-    this.refs.input1.select();
-  };
+    focus = () => {
+        this.refs.input1.focus();
+        this.refs.input1.select();
+    };
 
-  render() {
-    return (
-      <div className="Properties-container">
-        {PropertiesArray.map(item => (
-          <Property key={item} item={item} />
-        ))}
-      </div>
-    );
-  }
+    render() {
+        const { properties } = this.props;
+
+        return (
+            <div className="Properties-container">
+                {properties.map(property => (
+                    <Property
+                        key={property.key}
+                        property={property}
+                        onValue={this.props.onValue}
+                    />
+                ))}
+            </div>
+        );
+    }
 }
 
 export default Properties;

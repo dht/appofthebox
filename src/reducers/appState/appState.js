@@ -1,4 +1,4 @@
-import {initialStateEditor, initialStateBucket} from "./initialState";
+import {initialStateEditor, initialStateBucket, initialPhoneResolutions, initialPhones} from "./initialState";
 
 export const editorState = (state = initialStateEditor, action) => {
     switch(action.type) {
@@ -20,6 +20,7 @@ export const editorState = (state = initialStateEditor, action) => {
   export const patchEditorState = (value) => ({type: "PATCH_EDITORSTATE", value})
   
   export const bucket = (state = initialStateBucket, action) => {
+
     switch(action.type) {
       case "SET_BUCKET":
         return action.value;
@@ -30,78 +31,78 @@ export const editorState = (state = initialStateEditor, action) => {
           ...action.value
         };
         
-    case "SET_COMPONENTS":
-    case "SET_COMPONENT":
-    case "PATCH_COMPONENT":
-    case "DELETE_COMPONENT":
+    case "SET_BUCKET_COMPONENTS":
+    case "SET_BUCKET_COMPONENT":
+    case "PATCH_BUCKET_COMPONENT":
+    case "DELETE_BUCKET_COMPONENT":
        
       return {
           ...state,
           components: components(state.components, action)
         };
         
-    case "SET_COMPONENT_VIEWOPTION":
-    case "PATCH_COMPONENT_VIEWOPTION":
+    case "SET_BUCKET_COMPONENT_VIEWOPTION":
+    case "PATCH_BUCKET_COMPONENT_VIEWOPTION":
         
       return {
           ...state,
           viewOptions: viewOptions(state.viewOptions, action)
         };
         
-    case "SET_COMPONENT_VIEWOPTION_SIMULATETITLEBAR":
-    case "PATCH_COMPONENT_VIEWOPTION_SIMULATETITLEBAR":
+    case "SET_BUCKET_COMPONENT_VIEWOPTION_SIMULATETITLEBAR":
+    case "PATCH_BUCKET_COMPONENT_VIEWOPTION_SIMULATETITLEBAR":
         
       return {
           ...state,
           simulateTitlebar: simulateTitlebar(state.simulateTitlebar, action)
         };
         
-    case "SET_COMPONENT_VIEWOPTION_SIMULATETAB":
-    case "PATCH_COMPONENT_VIEWOPTION_SIMULATETAB":
+    case "SET_BUCKET_COMPONENT_VIEWOPTION_SIMULATETAB":
+    case "PATCH_BUCKET_COMPONENT_VIEWOPTION_SIMULATETAB":
         
       return {
           ...state,
           simulateTab: simulateTab(state.simulateTab, action)
         };
         
-    case "SET_COMPONENT_VIEWOPTION_SIMULATELIST":
-    case "PATCH_COMPONENT_VIEWOPTION_SIMULATELIST":
+    case "SET_BUCKET_COMPONENT_VIEWOPTION_SIMULATELIST":
+    case "PATCH_BUCKET_COMPONENT_VIEWOPTION_SIMULATELIST":
         
       return {
           ...state,
           simulateList: simulateList(state.simulateList, action)
         };
         
-    case "SET_COMPONENT_ELEMENTS":
-    case "SET_COMPONENT_ELEMENT":
-    case "PATCH_COMPONENT_ELEMENT":
-    case "DELETE_COMPONENT_ELEMENT":
+    case "SET_BUCKET_COMPONENT_ELEMENTS":
+    case "SET_BUCKET_COMPONENT_ELEMENT":
+    case "PATCH_BUCKET_COMPONENT_ELEMENT":
+    case "DELETE_BUCKET_COMPONENT_ELEMENT":
        
       return {
           ...state,
           elements: elements(state.elements, action)
         };
         
-    case "SET_COMPONENT_ELEMENT_RESOLUTIONS":
-    case "SET_COMPONENT_ELEMENT_RESOLUTION":
-    case "PATCH_COMPONENT_ELEMENT_RESOLUTION":
-    case "DELETE_COMPONENT_ELEMENT_RESOLUTION":
+    case "SET_BUCKET_COMPONENT_ELEMENT_RESOLUTIONS":
+    case "SET_BUCKET_COMPONENT_ELEMENT_RESOLUTION":
+    case "PATCH_BUCKET_COMPONENT_ELEMENT_RESOLUTION":
+    case "DELETE_BUCKET_COMPONENT_ELEMENT_RESOLUTION":
        
       return {
           ...state,
           resolutions: resolutions(state.resolutions, action)
         };
         
-    case "SET_COMPONENT_ELEMENT_RESOLUTION_PROPERTY":
-    case "PATCH_COMPONENT_ELEMENT_RESOLUTION_PROPERTY":
+    case "SET_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTY":
+    case "PATCH_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTY":
         
       return {
           ...state,
           properties: properties(state.properties, action)
         };
         
-    case "SET_COMPONENT_ELEMENT_DATA":
-    case "PATCH_COMPONENT_ELEMENT_DATA":
+    case "SET_BUCKET_COMPONENT_ELEMENT_DATA":
+    case "PATCH_BUCKET_COMPONENT_ELEMENT_DATA":
         
       return {
           ...state,
@@ -500,10 +501,10 @@ export const editorState = (state = initialStateEditor, action) => {
   
   export const properties = (state, action) => {
     switch(action.type) {
-      case "SET_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTIES":
+      case "SET_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTY":
         return action.value;
         
-      case "PATCH_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTIES":
+      case "PATCH_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTY":
         return {
           ...state,
           ...action.value
@@ -514,8 +515,8 @@ export const editorState = (state = initialStateEditor, action) => {
     }
   }
   
-  export const setProperties = (bucketId, componentId, elementId, resolutionId, value) => ({type: "SET_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTIES", bucketId, componentId, elementId, resolutionId, value});
-  export const patchProperties = (bucketId, componentId, elementId, resolutionId, value) => ({type: "PATCH_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTIES", bucketId, componentId, elementId, resolutionId, value})
+  export const setProperties = (bucketId, componentId, elementId, resolutionId, value) => ({type: "SET_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTY", bucketId, componentId, elementId, resolutionId, value});
+  export const patchProperties = (bucketId, componentId, elementId, resolutionId, value) => ({type: "PATCH_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTY", bucketId, componentId, elementId, resolutionId, value})
   
   export const data = (state, action) => {
     switch(action.type) {
@@ -568,7 +569,7 @@ export const editorState = (state = initialStateEditor, action) => {
     }
   }
   
-  export const phoneResolutions = (state = {}, action) => {
+  export const phoneResolutions = (state = initialPhoneResolutions, action) => {
     let newState;
     
     switch(action.type) {
@@ -658,7 +659,7 @@ export const editorState = (state = initialStateEditor, action) => {
     }
   }
   
-  export const phones = (state = {}, action) => {
+  export const phones = (state = initialPhones, action) => {
     let newState;
     
     switch(action.type) {

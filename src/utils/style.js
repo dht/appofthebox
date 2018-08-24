@@ -1,6 +1,6 @@
 import ElementTypes from "../components/Element/ElementTypes";
 
-export const crunchResolutions = (resolutions, resolutionId) => {
+export const crunchResolutions = (resolutions = [], resolutionId) => {
     return resolutions.filter(r => r).reduce((output, resolution) => {
         const { id, properties } = resolution;
 
@@ -17,6 +17,8 @@ export const parseStyle = (style, typ) => {
         output[key] = style[key];
         return output;
     }, {})
+
+    console.log('typ, styles[typ] ->', typ, styles[typ]);
 
     return {...styles[typ], ...parsedStyle};
 };
