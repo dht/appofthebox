@@ -14,7 +14,7 @@ const mapStateToProps = (state, ownProps) => {
     const elements = elementsSelector(state);
 
     return {
-        elements,
+        elements
     };
 };
 
@@ -25,8 +25,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(
                 patchEditorState({
                     currentHoverId: id,
-                    hoverBox: box(ev),
-                    hoverElement: element(ev)
+                    hoverBox: box(ev)
+                    // hoverElement: element(ev)
                 })
             );
         },
@@ -38,24 +38,23 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(
                 patchEditorState({
                     currentElementId: id,
-                    selectedBox: box(ev),
-                    selectedElement: element(ev)
+                    selectedBox: box(ev)
+                    // selectedElement: element(ev)
                 })
             );
         },
         onTextChange: (ev, id, element) => {
-            const {data} = element;
-            const {_value} = data;
+            const { data } = element;
+            const { _value } = data;
 
             dispatch(
                 modal.showModal(modal.types.DATA, {
                     value: _value,
                     onSave: value => {
-                        dispatch(thunks.patchData({_value: value}));
+                        dispatch(thunks.patchData({ _value: value }));
                     }
                 })
             );
-
         },
         onMouseLeave: ev => {
             dispatch(patchEditorState({ currentHoverId: 0, hoverBox: {} }));
@@ -74,7 +73,14 @@ const element = ev => {
 };
 
 const box = ev => {
-    return element(ev).getBoundingClientRect();
+    const { top, left, width, height } = element(ev).getBoundingClientRect();
+
+    return {
+        top,
+        left,
+        width,
+        height
+    };
 };
 
 export default connect(

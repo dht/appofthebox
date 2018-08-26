@@ -19,13 +19,14 @@ export const loadApp = (bucketId, componentId, resolutionId) => {
 
         const phones = await api.getPhones();
         const resolutions = await api.getResolutions();
-        const bucket = await api.getBucket();
+        let bucket = await api.getBucket();
 
         api.setBucketId(bucketId);
         api.setComponentId(componentId);
         api.setResolutionId(resolutionId);
 
-        dispatch(actions.setBucket(parsers.parseBucket(bucket)));
+        // bucket = parsers.parseBucket(bucket);
+        dispatch(actions.setBucket(bucket));
         dispatch(actions.setPhoneResolutions(arrayToObject(resolutions)));
         dispatch(actions.setPhones(arrayToObject(phones)));
         dispatch(

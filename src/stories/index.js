@@ -19,6 +19,7 @@ import ModalIconLibrary from "../layout_modules/modal-icon-library/_story";
 import Panel from "../layout_modules/panel/_story";
 import PhoneList from "../layout_modules/phone-list/_story";
 import Properties from "../layout_modules/properties/_story";
+import StateView from "../layout_modules/state-view/_story";
 import Tree from "../layout_modules/tree/_story";
 
 Around(storiesOf, module, action);
@@ -36,6 +37,7 @@ ModalIconLibrary(storiesOf, module, action);
 Panel(storiesOf, module, action);
 PhoneList(storiesOf, module, action);
 Properties(storiesOf, module, action);
+StateView(storiesOf, module, action);
 Tree(storiesOf, module, action);
 
 

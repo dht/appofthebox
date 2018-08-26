@@ -19,7 +19,7 @@ export class Property extends Component {
                     className="key"
                     onClick={() => this.setState({ isFocused: true })}
                 >
-                    {property.key}
+                    {property.key.replace("background", "bk")}
                 </div>
                 <Input
                     value={property.value || ""}
