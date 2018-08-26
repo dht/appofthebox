@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PhoneList from "./connected/PhoneList";
 import Editor from "./Editor/EditorContainer";
-import StateView from "./connected/StateView";
 import Clock from "../layout_modules/clock/Clock";
 import "./App.css";
 import Root from "./connected/RootModal";
@@ -51,7 +50,6 @@ class App extends Component {
                 </div>
                 <PhoneList onClick={this.setPhone} />
                 <Editor phone={phone} />
-                <StateView />
                 <Root />
             </div>
         );
