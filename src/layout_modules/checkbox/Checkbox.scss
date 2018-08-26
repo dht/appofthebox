@@ -1,0 +1,11 @@
+.Checkbox-container {
+  display: flex;
+  padding: 4px;
+  align-items: center;
+  flex-direction: row;
+
+  .label {
+    font-size: 12px;
+    padding-left: 6px;
+  }
+}

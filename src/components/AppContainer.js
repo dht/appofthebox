@@ -4,6 +4,7 @@ import App from "./App";
 import { loadApp, autosave } from "../reducers/app_thunks";
 import * as api from "../utils/firebase";
 import { isLoadingSelector } from "../selectors/selectors";
+import * as modal from "../reducers/modal/modal";
 
 const mapStateToProps = (state, ownProps) => {
     return {

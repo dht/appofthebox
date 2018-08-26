@@ -2,6 +2,7 @@
 
 export const initialStateEditor = {
     isLoading: false,
+    hideAround: false,
     currentBucketId: "",
     currentComponentId: 1,
     currentElementId: 1,

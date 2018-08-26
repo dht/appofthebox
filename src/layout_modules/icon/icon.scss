@@ -1,0 +1,35 @@
+.Icon-container {
+  border-radius: 3px;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #eee;
+  position: relative;
+
+  .overlay {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+  }
+
+  .icon {
+    font-size: 12px;
+  }
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover {
+      .overlay {
+        display: block;
+      }
+    }
+  }
+}

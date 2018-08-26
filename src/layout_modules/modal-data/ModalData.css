@@ -1,0 +1,14 @@
+.Data-container .content {
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+  align-items: center;
+  height: 60px; }
+  .Data-container .content input {
+    flex: 1;
+    padding: 5px 10px;
+    font-size: 20px; }

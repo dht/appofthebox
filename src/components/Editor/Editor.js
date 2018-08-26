@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./Editor.css";
 import Draggable from "react-draggable";
-import Panel from "../Panel/Panel";
-import Element from "../Element/ElementContainer";
-import Around from "../Around/AroundContainer";
+import Panel from "../connected/Panel/PanelContainer";
+import Element from "../connected/Element/ElementContainer";
+import Around from "../connected/Around/AroundContainer";
 
 export class Editor extends Component {
     state = {

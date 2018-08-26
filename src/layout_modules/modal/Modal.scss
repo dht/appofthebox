@@ -1,0 +1,65 @@
+.Modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+   
+
+    .modal {
+        background-color: #111;
+        border: 1px solid gray;
+        box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.15);
+        width: 600px;
+        height: 500px;
+        display:flex;
+        align-items: stretch;
+        flex-direction: column;
+
+        #modal-title, #modal-description {
+            display:none;
+        }
+
+        .actions {
+            border:1px solid green;
+            display: flex;
+    
+            button {
+                flex:1;
+                padding:10px 0;
+                text-align: center;
+                border:none;
+                font-size:20px;
+                background-color:#ddd;
+
+                &:hover {
+                    background-color:#eee;
+                }
+                
+            }
+        }
+
+        .close {
+            position: fixed;
+            top: 50px;
+            right: 50px;
+            cursor: pointer;
+
+            i {
+                color: #ccc;
+                font-size: 40px;
+            }
+
+            &:hover {
+                i {
+                    color: white;
+                }
+            }
+        }
+    }
+}

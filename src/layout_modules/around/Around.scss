@@ -1,0 +1,23 @@
+.Around-container {
+    position: fixed;
+    pointer-events: none;
+    // transition: box-shadow 50ms linear;
+
+    &.hover {
+        box-shadow: 0px 0px 0px 0px #fc5185;
+
+        &.exists {
+            box-shadow: 0px 0px 0px 5px #fc5185;
+            // transition: box-shadow 150ms linear;
+        }
+    }
+
+    &.selected {
+        box-shadow: 0px 0px 0px 0px orangered;
+
+        &.exists {
+            box-shadow: 0px 0px 0px 2px orangered;
+            // transition: box-shadow 150ms linear;
+        }
+    }
+}

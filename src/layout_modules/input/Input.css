@@ -1,0 +1,7 @@
+.Input-container input {
+  font-size: 15px;
+  background-color: transparent;
+  color: #ccc;
+  width: 80px;
+  border: none;
+  padding: 2px 5px; }

@@ -1,0 +1,39 @@
+.ModalIconLibrary-container {
+    position: relative;
+
+    .content {
+        color: white;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: auto;
+        flex:1;
+        padding: 10px;
+        box-sizing: border-box;
+        position: relative;
+
+        .icon {
+            cursor: pointer;
+
+            i {
+                color: #ddd;
+            }
+
+            &:hover {
+                i {
+                    color: orange;
+                }
+            }
+        }
+    }
+
+    .preview {
+        position: absolute;
+        top: 10px;
+        left: -130px;
+
+        i {
+            font-size: 100px;
+            color:white;
+        }
+    }
+}

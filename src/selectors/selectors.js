@@ -38,7 +38,6 @@ export const currentResolutionSelector = createSelector(
     (resolutions, resolutionId) => resolutions[resolutionId]
 );
 
-
 export const componentSelector = createSelector(
     bucketSelector,
     currentComponentIdSelector,
@@ -52,7 +51,7 @@ export const componentSelector = createSelector(
 
 export const elementsArraySelector = createSelector(
     componentSelector,
-    (component) => objectToArray(component.elements) || []
+    component => objectToArray(component.elements) || []
 );
 
 export const elementsSelector = createSelector(
@@ -60,14 +59,20 @@ export const elementsSelector = createSelector(
     currentResolutionIdSelector,
     (elements, resolutionId) => {
         return elements.map(element => {
-            const { resolutions } = element;
+            const newElement = element;
+            const { resolutions } = newElement;
 
-            element.properties = crunchResolutions(resolutions, resolutionId);
-            element.localProperties = (
+            newElement.properties = crunchResolutions(
+                resolutions,
+                resolutionId
+            );
+            newElement.localProperties = (
                 resolutions[resolutionId] || {}
             ).properties;
 
-            return element;
+            newElement.resolution = resolutionId;
+            
+            return newElement;
         });
     }
 );
@@ -77,7 +82,7 @@ export const elementSelector = createSelector(
     currentElementIdSelector,
     currentResolutionIdSelector,
     (elements, elementId, resolutionId) => {
-        const element = clone(elements[elementId] || {});
+        const element = elements[elementId - 1] || {};
         const { resolutions = [] } = element;
 
         element.properties = crunchResolutions(resolutions, resolutionId);
@@ -89,20 +94,20 @@ export const elementSelector = createSelector(
 
 export const propertiesSelector = createSelector(
     elementSelector,
-    (element) => {
+    currentResolutionIdSelector,
+    (element, resolution) => {
+        const { properties = {}, localProperties = {} } = element;
 
-        const {properties = {} , localProperties = {}} = element;
-        
         return PropertiesArray.map(property => {
             return {
                 key: property,
-                value: properties[property],
-                placeholder: localProperties[property]
-            }
-        },[]);
+                value: localProperties[property],
+                placeholder: properties[property],
+                resolution // for refresh purpose
+            };
+        }, []);
     }
 );
-
 
 export const resolutionsSelector = createSelector(
     phonesSelector,
@@ -131,7 +136,6 @@ export const resolutionsSelector = createSelector(
     }
 );
 
-
 export const hoverBoxSelector = createSelector(
     editorStateSelector,
     editorState => ({
@@ -145,6 +149,24 @@ export const selectedBoxSelector = createSelector(
     editorStateSelector,
     editorState => ({
         elementId: editorState.currentElementId,
-        box: editorState.selectedBox,
+        box: editorState.selectedBox
     })
+);
+
+export const newItemSelector = createSelector(
+    currentComponentIdSelector,
+    elementsSelector,
+    elementSelector,
+    (componentId, elements, element) => {
+        const max = Object.keys(elements || {}).reduce(
+            (output, key) => Math.max(output, elements[key].id || 0),
+            0
+        );
+
+        const { parentId } = element || {};
+
+        if (!parentId) return;
+
+        return { componentId, parentId, id: max + 1 };
+    }
 );

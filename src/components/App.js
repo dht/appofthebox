@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import PhoneList from "./PhoneList/PhoneListContainer";
-import Editor from "./Editor/EditorContainer";
-import Clock from "./Clock/Clock";
+import PhoneList from "../layout_modules/PhoneList/PhoneListContainer";
+import Editor from "../layout_modules/Editor/EditorContainer";
+import Clock from "../layout_modules/Clock/Clock";
 import "./App.css";
+import { Choice } from "../layout_modules/Choice/Choice";
+import Root from "../layout_modules/Modal/Root";
 
 class App extends Component {
     state = {
@@ -49,6 +51,7 @@ class App extends Component {
                 </div>
                 <PhoneList onClick={this.setPhone} />
                 <Editor phone={phone} />
+                <Root />
             </div>
         );
     }

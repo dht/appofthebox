@@ -1,6 +1,9 @@
 import * as api from "../utils/firebase";
 import * as actions from "../reducers/appState/appState";
 import { arrayToObject } from "../utils/map";
+import * as parsers from "../selectors/parsers";
+import { templates } from "../constants/elementTypes";
+import * as selectors from "../selectors/selectors";
 
 export const loadApp = (bucketId, componentId, resolutionId) => {
     return async dispatch => {
@@ -22,7 +25,7 @@ export const loadApp = (bucketId, componentId, resolutionId) => {
         api.setComponentId(componentId);
         api.setResolutionId(resolutionId);
 
-        dispatch(actions.setBucket(bucket));
+        dispatch(actions.setBucket(parsers.parseBucket(bucket)));
         dispatch(actions.setPhoneResolutions(arrayToObject(resolutions)));
         dispatch(actions.setPhones(arrayToObject(phones)));
         dispatch(
@@ -40,7 +43,6 @@ export const patchProperty = value => {
         const state = getState(),
             { editorState } = state,
             {
-                currentBucketId,
                 currentComponentId,
                 currentElementId,
                 currentResolutionId
@@ -48,17 +50,41 @@ export const patchProperty = value => {
 
         dispatch(
             actions.patchProperties(
-                currentBucketId,
                 currentComponentId,
                 currentElementId,
                 currentResolutionId,
                 value
             )
         );
+
+        dispatch(refreshBoxes(50));
     };
 };
 
-export const refreshBoxes = () => {
+export const patchData = data => {
+    return (dispatch, getState) => {
+        const state = getState(),
+            { editorState } = state,
+            {
+                currentComponentId,
+                currentElementId,
+                currentResolutionId
+            } = editorState;
+
+        dispatch(
+            actions.patchData(
+                currentComponentId,
+                currentElementId,
+                data
+            )
+        );
+
+        dispatch(refreshBoxes(50));
+    };
+};
+
+
+export const refreshBoxes = (delay = 300) => {
     return (dispatch, getState) => {
         const state = getState(),
             { editorState } = state,
@@ -80,7 +106,27 @@ export const refreshBoxes = () => {
                     selectedBox: selectedBox
                 })
             );
-        }, 300);
+        }, delay);
+    };
+};
+
+export const addElement = type => {
+    return (dispatch, getState) => {
+        const state = getState(),
+            newItemData = selectors.newItemSelector(state);
+
+        console.log("newItemData ->", newItemData);
+
+        const factory = templates[type];
+
+        if (!factory || !newItemData) return;
+
+        const { componentId, parentId, id } = newItemData;
+        const elements = factory(id, parentId);
+
+        for (let cnt = 0; cnt < elements.length; cnt++) {
+            dispatch(actions.setElement(componentId, id + cnt, elements[cnt]));
+        }
     };
 };
 
