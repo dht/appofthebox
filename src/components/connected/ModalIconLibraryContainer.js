@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import ModalIconLibrary from '../../layout_modules/modal-icon-library/IconLibrary';
+import ModalIconLibrary from '../../layout_modules/modal-icon-library/ModalIconLibrary';
 
 const mapStateToProps = (state, ownProps) => {
     return {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./ModalIconLibrary.css";
-import Modal from "../Modal";
-import icons from "../../../constants/icons";
+import Modal from "../modal/Modal";
+import icons from "../../constants/icons";
 
 export class ModalIconLibrary extends Component {
     state = {

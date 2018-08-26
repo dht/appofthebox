@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./icon.css";
+import "./Icon.css";
 import classnames from "classnames";
 
 export class Icon extends Component {

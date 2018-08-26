@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Properties.css";
-import Input from "../Input/Input";
+import Input from "../input/Input";
 
 const colorsProps = ["color", "backgroundColor"];
 

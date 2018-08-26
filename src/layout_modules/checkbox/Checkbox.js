@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Checkbox.css";
 import classnames from "classnames";
+import Icon from "../icon/Icon";
 
 export class Checkbox extends Component {
     state = {};

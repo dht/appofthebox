@@ -2,12 +2,12 @@ import {connect} from "react-redux";
 import React, { Component } from "react";
 import {types} from "../../reducers/modal/modal";
 
-import IconLibrary from "./ModalIconLibraryContainer";
-import Data from "./ModalDataContainer";
+import ModalIconLibrary from "./ModalIconLibraryContainer";
+import ModalData from "./ModalDataContainer";
 
 const MODAL_COMPONENTS = {
-    [types.ICON_GALLERY]: IconLibrary,
-    [types.DATA]: Data,
+    [types.ICON_GALLERY]: ModalIconLibrary,
+    [types.DATA]: ModalData,
 };
 
 const ModalRoot = ({ modalType, modalProps }) => {
@@ -24,4 +24,18 @@ const ModalRoot = ({ modalType, modalProps }) => {
     );
 };
 
-export default connect(state => state.modal)(ModalRoot);
+const mapStateToProps = state => state.modal
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        hideModal: () => {
+            dispatch(actions.hideModal());
+        }
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ModalRoot);
+

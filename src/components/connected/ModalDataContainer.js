@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import ModalData from '../../layout_modules/modal-data/Data';
+import ModalData from '../../layout_modules/modal-data/ModalData';
 
 const mapStateToProps = (state, ownProps) => {
     return {

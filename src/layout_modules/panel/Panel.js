@@ -1,11 +1,15 @@
 import React, { Component } from "react";
 import "./Panel.css";
-import { IconButton, Checkbox } from "../UI/UI";
-import Properties from "../Properties/PropertiesContainer";
+import { Actions } from "../actions/Actions";
+import { PanelSettings } from "../panel-settings/PanelSettings";
+
 import Tabs, { TabPane } from "rc-tabs";
 import TabContent from "rc-tabs/lib/TabContent";
 import ScrollableInkTabBar from "rc-tabs/lib/ScrollableInkTabBar";
 import "rc-tabs/dist/rc-tabs.css";
+import Icon from "../icon/Icon";
+import Checkbox from "../checkbox/Checkbox";
+import IconButton from "../icon-button/IconButton";
 
 export class Panel extends Component {
     state = {
@@ -13,6 +17,7 @@ export class Panel extends Component {
     };
 
     render() {
+        const { config } = this.props;
         const { activeTab } = this.state;
 
         return (
@@ -27,53 +32,31 @@ export class Panel extends Component {
                     tabBarPosition={"bottom"}
                     onChange={key => this.setState({ activeTab: key })}
                 >
-                    <TabPane tab="Tools" key="1">
-                        <div className="tab-inner-page">
-                            <div className="actions">
-                                <IconButton
-                                    icon="text_format"
-                                    label="Text"
-                                    onClick={() => this.props.addElement()}
-                                />
-                                <IconButton
-                                    icon="image"
-                                    label="Image"
-                                    onClick={() => this.props.addElement()}
-                                />
-                                <IconButton
-                                    icon="view_column"
-                                    label="View"
-                                    onClick={() => this.props.addElement()}
-                                />
-                                <IconButton
-                                    icon="tab_unselected"
-                                    label="Placer"
-                                    onClick={() => this.props.addElement()}
-                                />
-                            </div>
-                            <div className="properties">
-                                <div className="headers">Properties</div>
-                                <div className="content">
-                                    <Properties />
-                                </div>
-
-                                <div className="settings">
-                                    <div className="headers">Settings</div>
-                                    <div className="content">
-                                        <Checkbox
-                                            onClick={() => {}}
-                                            checked={true}
-                                            label="Is clickable"
-                                        />
-                                        <Checkbox
-                                            onClick={() => {}}
-                                            checked={true}
-                                            label="Is visible"
-                                        />
+                    {config.tabs.map(tab => (
+                        <TabPane tab={tab.name} key={tab.id}>
+                            <div className="tab-inner-page">
+                                {tab.content.map(content => (
+                                    <div>
+                                        {content.header ? <div className="headers">
+                                            {content.header}
+                                        </div> : null}
+                                        <div className="content">
+                                            {content.component}
+                                        </div>
                                     </div>
-                                </div>
+                                ))}
                             </div>
-                        </div>
+                        </TabPane>
+                    ))}
+                </Tabs>
+            </div>
+        );
+    }
+}
+
+/*
+ <TabPane tab="Tools" key="1">
+                        
                     </TabPane>
                     <TabPane tab="Tree" key="2" disabled={false}>
                         <div className="tab-inner-page">
@@ -109,11 +92,6 @@ export class Panel extends Component {
                                 />
                             </div>
                         </div>
-                    </TabPane>
-                </Tabs>
-            </div>
-        );
-    }
-}
+                    </TabPane>*/
 
 export default Panel;

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./Editor.css";
 import Draggable from "react-draggable";
-import Panel from "../connected/Panel/PanelContainer";
-import Element from "../connected/Element/ElementContainer";
-import Around from "../connected/Around/AroundContainer";
+import Panel from "../connected/PanelContainer";
+import Element from "../connected/ElementContainer";
+import Around from "../connected/AroundContainer";
 
 export class Editor extends Component {
     state = {
@@ -51,7 +51,9 @@ export class Editor extends Component {
 
                 <Draggable defaultPosition={{ x: 50, y: -50 }}>
                     <div>
-                        <Panel />
+                        <Panel>
+                        
+                        </Panel>
                     </div>
                 </Draggable>
             </div>

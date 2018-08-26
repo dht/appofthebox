@@ -86,19 +86,4 @@ export class Modal extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {};
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        hideModal: () => {
-            dispatch(actions.hideModal());
-        }
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Modal);
+export default Modal;

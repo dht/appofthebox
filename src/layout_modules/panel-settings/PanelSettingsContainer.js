@@ -1,11 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import Clock from '../../layout_modules/clock/Clock';
-import {isRunningSelector, isLoadingSelector} from "../../selectors/selectors";
+import PanelSettings from './PanelSettings';
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        isRunning: isRunningSelector(state) || isLoadingSelector(state)
     };
 }
 
@@ -19,4 +17,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Clock);
+)(PanelSettings);

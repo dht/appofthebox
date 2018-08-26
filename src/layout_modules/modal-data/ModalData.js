@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./ModalData.css";
-import Modal from "../Modal";
+import Modal from "../modal/Modal";
 
 export class ModalData extends Component {
     state = {

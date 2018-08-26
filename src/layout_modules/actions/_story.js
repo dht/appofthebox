@@ -1,10 +1,10 @@
 import React from "react";
 
-import { PhoneList } from "./PhoneList";
+import { Actions } from "./Actions";
 import { backgrounds } from "../../stories/backgrounds";
 
 export default (storiesOf, mod, action) => {
-    storiesOf("PhoneList", mod)
+    storiesOf("Actions", mod)
         .addDecorator(backgrounds)
-        .add("basic", () => <PhoneList />);
+        .add("basic", () => <Actions />);
 };
