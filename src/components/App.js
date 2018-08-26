@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import PhoneList from "./connected/PhoneListContainer";
+import PhoneList from "./connected/PhoneList";
 import Editor from "./Editor/EditorContainer";
 import Clock from "../layout_modules/clock/Clock";
 import "./App.css";
-import Root from "./connected/RootModalContainer";
+import Root from "./connected/RootModal";
 
 class App extends Component {
     state = {

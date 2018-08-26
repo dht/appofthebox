@@ -13,6 +13,10 @@ const mapStateToProps = (state, ownProps) => {
                 id: "visible",
                 label: "Is visible"
             },
+            {
+                id: "scrollable",
+                label: "Is scrollable"
+            },
         ]
     };
 

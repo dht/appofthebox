@@ -1,9 +1,9 @@
 import {connect} from "react-redux";
 import React, { Component } from "react";
 import {types} from "../../reducers/modal/modal";
-
-import ModalIconLibrary from "./ModalIconLibraryContainer";
-import ModalData from "./ModalDataContainer";
+import * as actions from "../../reducers/modal/modal";
+import ModalIconLibrary from "./ModalIconLibrary";
+import ModalData from "./ModalData";
 
 const MODAL_COMPONENTS = {
     [types.ICON_GALLERY]: ModalIconLibrary,
@@ -12,8 +12,6 @@ const MODAL_COMPONENTS = {
 
 const ModalRoot = ({ modalType, modalProps }) => {
 
-    console.log('modalType ->', modalType);
-    
     if (!modalType) {
         return null;
     }

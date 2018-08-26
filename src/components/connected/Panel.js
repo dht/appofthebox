@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Panel from "../../layout_modules/panel/Panel";
 import * as selectors from "../../selectors/selectors";
 import * as thunks from "../../reducers/app_thunks";
-import Properties from "./PropertiesContainer";
+import Properties from "./Properties";
 import ActionsTools from "./ActionsTools";
 import ActionsLibrary from "./ActionsLibrary";
 import PanelSettingsTools from "./PanelSettingsTools";

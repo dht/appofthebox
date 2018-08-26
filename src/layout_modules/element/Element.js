@@ -6,12 +6,18 @@ import { parseStyle } from "../../utils/style";
 export class Element extends Component {
     state = {};
 
-    componentDidMount() {}
+    componentDidMount() {
+        console.log("this.props ->", this.props, this.props.id);
+    }
 
     componentWillUnmount() {}
 
+    getElement = () => {
+        const { elements, id } = this.props;
+        return elements[id - 1];
+    };
     style = () => {
-        const { element } = this.props,
+        const element = this.getElement(),
             { type, properties } = element;
 
         console.log("properties ->", properties);
@@ -20,7 +26,7 @@ export class Element extends Component {
     };
 
     renderInner = () => {
-        const { element } = this.props,
+        const element = this.getElement(),
             { type, data, properties } = element;
 
         if (type === ElementTypes.TEXT) {
@@ -39,22 +45,40 @@ export class Element extends Component {
 
         return elements
             .filter(element => element && element.parentId === id)
-            .map(element => <Element {...this.props} id={element.id} key={element.id} />);
+            .map(element => (
+                <Element {...this.props} id={element.id} key={element.id} />
+            ));
     };
 
-    onDoubleClick = () => {
-        const { element } = this.props;
+    onDoubleClick = (ev) => {
+        const { id, element } = this.props;
         const { type } = element;
 
         switch (type) {
             case ElementTypes.TEXT:
-                this.props.onTextChange(element);
+                this.props.onTextChange(ev, id, element);
                 break;
         }
     };
 
+    onMouseEnter = (ev) => {
+        const {id} = this.props;
+        this.props.onMouseEnter(ev, id);
+    }
+
+    onMouseLeave = (ev) => {
+        const {id} = this.props;
+        this.props.onMouseLeave(ev, id);
+    }
+
+    onClick = (ev) => {
+        const {id} = this.props;
+        this.props.onClick(ev, id);
+    }
+
     render() {
-        const { element } = this.props;
+        const {id} = this.props;
+        const element = this.getElement();
 
         if (!element) return null;
 
@@ -62,9 +86,9 @@ export class Element extends Component {
             <div
                 className="Element-container"
                 style={this.style()}
-                onMouseEnter={this.props.onMouseEnter}
-                onMouseLeave={this.props.onMouseLeave}
-                onClick={this.props.onClick}
+                onMouseEnter={this.onMouseEnter}
+                onMouseLeave={this.onMouseLeave}
+                onClick={this.onClick}
                 onDoubleClick={this.onDoubleClick}
             >
                 {this.renderInner()}

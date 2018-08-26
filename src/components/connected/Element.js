@@ -7,42 +7,43 @@ import * as api from "../../utils/firebase";
 import * as thunks from "../../reducers/app_thunks";
 import * as modal from "../../reducers/modal/modal";
 
+// TODO: check whether using a container instead of cascading elements is rendered faster
+// current approach may lead to rendering entire of the tree when the root changes
+
 const mapStateToProps = (state, ownProps) => {
-    const elements = elementsSelector(state),
-        element = elements[ownProps.id - 1];
+    const elements = elementsSelector(state);
 
     return {
         elements,
-        element
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onMouseEnter: ev => {
+        onMouseEnter: (ev, id) => {
             ev.stopPropagation();
             dispatch(
                 patchEditorState({
-                    currentHoverId: ownProps.id,
+                    currentHoverId: id,
                     hoverBox: box(ev),
                     hoverElement: element(ev)
                 })
             );
         },
-        onClick: ev => {
+        onClick: (ev, id) => {
             ev.stopPropagation();
 
-            api.setElementId(ownProps.id);
+            api.setElementId(id);
 
             dispatch(
                 patchEditorState({
-                    currentElementId: ownProps.id,
+                    currentElementId: id,
                     selectedBox: box(ev),
                     selectedElement: element(ev)
                 })
             );
         },
-        onTextChange: (element) => {
+        onTextChange: (ev, id, element) => {
             const {data} = element;
             const {_value} = data;
 

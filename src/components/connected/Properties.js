@@ -5,8 +5,6 @@ import * as selectors from "../../selectors/selectors";
 import * as thunks from "../../reducers/app_thunks";
 
 const mapStateToProps = (state, ownProps) => {
-    console.log('selectors.propertiesSelector(state) ->', JSON.stringify(selectors.propertiesSelector(state)));
-    
     return {
         properties: selectors.propertiesSelector(state)
     };

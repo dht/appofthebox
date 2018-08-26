@@ -3,7 +3,6 @@ import { objectToArray } from "../utils/map";
 
 export const crunchResolutions = (resolutions = [], resolutionId) => {
 
-    console.log(JSON.stringify(resolutions, null, 4))
     return objectToArray(resolutions)
         .filter(r => r)
         .reduce((output, resolution) => {
