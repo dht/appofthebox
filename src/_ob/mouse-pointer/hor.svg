@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="20px" viewBox="0 0 22 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Cursor/Resize/Down Copy 5</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-17.8%" y="-13.8%" width="135.6%" height="140.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="1" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="0.9" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.65 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Cursors" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-181.000000, -139.000000)">
+        <g id="Resize" transform="translate(10.000000, 136.000000)">
+            <g id="Cursor/Resize/LeftRIght" transform="translate(170.000000, 0.000000)">
+                <g id="left-to-right" filter="url(#filter-1)" transform="translate(3.000000, 4.000000)">
+                    <polygon id="Shape" fill="#FFFFFF" fill-rule="nonzero" points="7 0 7 6.01 5.98 6.01 5.98 2.54 0 8.01 5.98 13.47 5.98 9.99 7 9.99 7 16 7.02 16 10.98 16 10.98 9.99 12.04 9.99 12.04 13.46 18 7.99 12.04 2.53 12.04 6 10.98 6 10.98 0"></polygon>
+                    <polygon id="Shape" fill="#000000" fill-rule="nonzero" points="16.34 7.99 13.02 4.77 13.02 7.02 10 7.02 10 1.06 9.98 1.06 9.98 1.04 8.04 1.04 8.04 7.04 4.98 7.04 4.98 4.76 1.66 8.01 4.98 11.23 4.98 8.98 8.04 8.98 8.04 14.98 8.06 14.98 9.98 14.98 10 14.98 10 8.98 13.02 8.98 13.02 11.24"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

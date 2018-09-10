@@ -9,7 +9,7 @@
         display: flex;
         align-items: baseline;
 
-        &:hover {
+        &:hover, &.hover {
             background-color: #444;
         }
 
@@ -20,7 +20,7 @@
             cursor: pointer;
             position: relative;
 
-            &:hover {
+            &:hover, &.hover {
                 color: orange;
             }
         }

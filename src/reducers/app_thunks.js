@@ -4,9 +4,27 @@ import { arrayToObject } from "../utils/map";
 import * as parsers from "../selectors/parsers";
 import { templates } from "../constants/elementTypes";
 import * as selectors from "../selectors/selectors";
+import * as mocks from "./_mock";
+
+export const loadAppJson = (bucketId, componentId, resolutionId) => {
+    return dispatch => {
+        dispatch(actions.setBucket(mocks.bucket));
+        dispatch(actions.setPhoneResolutions(mocks.resolutions));
+        dispatch(actions.setPhones(mocks.phones));
+        dispatch(
+            actions.patchEditorState({
+                isLoading: false,
+                currentComponentId: componentId,
+                currentResolutionId: resolutionId
+            })
+        );
+    };
+};
 
 export const loadApp = (bucketId, componentId, resolutionId) => {
     return async dispatch => {
+        return dispatch(loadAppJson(bucketId, componentId, resolutionId));
+
         api.setBucketId(bucketId);
 
         dispatch(
@@ -72,18 +90,11 @@ export const patchData = data => {
                 currentResolutionId
             } = editorState;
 
-        dispatch(
-            actions.patchData(
-                currentComponentId,
-                currentElementId,
-                data
-            )
-        );
+        dispatch(actions.patchData(currentComponentId, currentElementId, data));
 
         dispatch(refreshBoxes(50));
     };
 };
-
 
 export const refreshBoxes = (delay = 300) => {
     return (dispatch, getState) => {

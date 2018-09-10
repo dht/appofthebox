@@ -7,7 +7,6 @@ export class Element extends Component {
     state = {};
 
     componentDidMount() {
-        console.log("this.props ->", this.props, this.props.id);
     }
 
     componentWillUnmount() {}
@@ -19,8 +18,6 @@ export class Element extends Component {
     style = () => {
         const element = this.getElement(),
             { type, properties } = element;
-
-        console.log("properties ->", properties);
 
         return parseStyle(properties, type);
     };
@@ -84,6 +81,8 @@ export class Element extends Component {
 
         return (
             <div
+                data-ob="element"
+                data-hover="dynamic"
                 className="Element-container"
                 style={this.style()}
                 onMouseEnter={this.onMouseEnter}

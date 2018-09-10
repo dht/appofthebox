@@ -14,9 +14,10 @@ export class Property extends Component {
         const { isFocused } = this.state;
 
         return (
-            <div className="Property-container">
+            <div className="Property-container" data-hover={true}>
                 <div
                     className="key"
+                    data-hover={true}
                     onClick={() => this.setState({ isFocused: true })}
                 >
                     {property.key.replace("background", "bk")}

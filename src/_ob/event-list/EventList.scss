@@ -1,0 +1,32 @@
+.EventList-container {
+    overflow: auto;
+    color:#eee;
+
+    .inner {
+        .event {
+            border-bottom: 1px solid gray;
+            padding: 6px 10px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .id {
+                padding: 5px;
+                width:12px;
+                font-size:10px;
+                color:greenyellow;
+            }
+
+            .type {
+                padding: 5px;
+                font-size:10px;
+                color:pink;
+            }
+
+            .ts {
+                padding: 5px;
+                width:50px;
+            }
+        }
+    }
+}

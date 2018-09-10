@@ -16,6 +16,8 @@ export class PhoneList extends Component {
         return (
             <div
                 className={className}
+                data-ob="phone"
+                data-hover={true}
                 key={resolution.id}
                 onClick={() => this.props.onClick(resolution)}
             >

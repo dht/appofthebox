@@ -8,8 +8,6 @@ export const crunchResolutions = (resolutions = [], resolutionId) => {
         .reduce((output, resolution) => {
             const { id, properties } = resolution;
 
-            console.log('properties ->', properties);
-
             if (resolutionId >= id) {
                 output = { ...output, ...properties };
             }

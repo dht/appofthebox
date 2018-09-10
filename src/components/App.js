@@ -4,6 +4,8 @@ import Editor from "./Editor/EditorContainer";
 import Clock from "../layout_modules/clock/Clock";
 import "./App.css";
 import Root from "./connected/RootModal";
+import MissionControl from "../_ob/mission-control/MissionControlContainer";
+import { Player } from "../_ob/player/Player";
 
 class App extends Component {
     state = {
@@ -51,6 +53,8 @@ class App extends Component {
                 <PhoneList onClick={this.setPhone} />
                 <Editor phone={phone} />
                 <Root />
+                <MissionControl />
+                <Player />
             </div>
         );
     }

@@ -1,0 +1,13 @@
+.MousePointer-container {
+    .left {
+        position: absolute;
+        transition: left 6s;
+        transition-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
+
+        .top {
+            position: absolute;
+            transition: top 6s;
+            transition-timing-function: cubic-bezier(0.1, 0.7, 1, 0.1);
+        }
+    }
+}
