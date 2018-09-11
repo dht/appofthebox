@@ -17,12 +17,13 @@ export class MousePointer extends Component {
         this.dx = x - this.x;
         this.dy = y - this.y;
 
-        this.easing = BezierEasing(0, 0, 1, 0.5);
+        this.easing = BezierEasing(0.28, 0.45, 0.83, 0.57);
         this.interval = setInterval(this.step, 10);
         this.intervalHover = setInterval(this.hoverCheck, 50);
     };
 
     clear = () => {
+        this.hookHover();
         clearInterval(this.interval);
         clearInterval(this.intervalHover);
         this.hoverCheck();
@@ -35,7 +36,7 @@ export class MousePointer extends Component {
         this.refs.img.style.left = this.x + "px";
         this.refs.img.style.top = this.y + "px";
 
-        if (this.i === this.steps) {
+        if (this.i > this.steps) {
             this.clear();
         }
     };
@@ -51,8 +52,6 @@ export class MousePointer extends Component {
     componentDidMount() {
         this.x = 0;
         this.y = 0;
-
-        setTimeout(this.hookHover, 1000);
     }
 
     hookHover = () => {
@@ -70,7 +69,7 @@ export class MousePointer extends Component {
         const { cursor } = props;
 
         if (cursor !== this.state.cursor) {
-            const {duration = 3000}  = cursor;
+            const { duration = 3000 } = cursor;
             this.setState({ cursor });
             // alert(cursor.left + ":" + cursor.top);
             this.changeDestination(cursor.left, cursor.top, duration / 10);

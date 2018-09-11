@@ -2,10 +2,12 @@
 import React, { Component } from "react";
 import "./MissionControl.css";
 import PropTypes from "prop-types";
-import { eventTypes } from "../recordState";
+import { eventTypes, modes } from "../recordState";
 import * as dom from "../dom";
+import * as pointer from "../pointer";
 import Recorder from "../recorder/RecorderContainer";
 import EventList from "../event-list/EventListContainer";
+import { Button } from "../button/Button";
 
 type props = {};
 
@@ -20,6 +22,8 @@ export class MissionControl<props> extends Component {
     }
 
     click = ev => {
+        const { cursor } = this.props;
+
         const obId = dom.findObElement(ev.target);
 
         if (obId === "mission-control") return;
@@ -30,37 +34,20 @@ export class MissionControl<props> extends Component {
             cursor: { left: ev.clientX, top: ev.clientY }
         });
 
-        this.props.setCursor({ left: ev.clientX, top: ev.clientY, duration: 2000 });
-    };
-
-    mouseEnter = ev => {
-
-        console.log('1 ->', 1);
-        
-        const obId = dom.findObElement(ev.target);
-        const middle = dom.middle(ev.target.getBoundingClientRect());
-        
-        console.log('mouseEnter ->', obId);
-
-        if (obId === "mission-control") return;
-        
-        this.props.addEvent({
-            obId,
-            type: eventTypes.HOVER,
-            cursor: middle
+        const duration = pointer.duration(cursor, {
+            top: ev.clientY,
+            left: ev.clientX
         });
 
-        this.props.setCursor(middle);
-    }
+        this.props.setCursor({ left: ev.clientX, top: ev.clientY, duration });
+    };
 
     componentDidMount() {
         window.addEventListener("click", this.click);
-        dom.addEventListener("[data-hover='dynamic']", "mouseenter", this.mouseEnter);
     }
 
     componentWillUnmount() {
         window.removeEventListener("click", this.click);
-        dom.removeEventListener("[data-hover='dynamic']", "mouseenter", this.mouseEnter);
     }
 
     toggleRecording = () => {
@@ -89,6 +76,29 @@ export class MissionControl<props> extends Component {
         this.props.play();
     };
 
+    renderStats() {
+        const { currentDuration } = this.props,
+            { rest = 0, cursor = 0, total = 0 } = currentDuration;
+
+        return (
+            <div className="stats">
+                {Math.floor(rest)} | {Math.floor(cursor)} | {Math.floor(total)}
+            </div>
+        );
+    }
+
+    renderRecordButton() {
+        const { mode } = this.props;
+
+        const isRecording = mode === modes.RECORDING;
+
+        if (isRecording) {
+            return <Button onClick={this.props.stop} icon="stop" />;
+        } else {
+            return <Button onClick={this.props.record} icon="keyboard_voice" />;
+        }
+    }
+
     render() {
         const { mode } = this.props;
 
@@ -99,12 +109,13 @@ export class MissionControl<props> extends Component {
                         this.recorder = instance;
                     }}
                 />
+
                 <div className="text">{mode}</div>
-                <div>
-                    <button onClick={this.props.record}>Record</button>
-                    <button onClick={this.props.stop}>Stop</button>
-                    <button onClick={this.play}>Play</button>
-                    <button onClick={this.download}>Download</button>
+                {this.renderStats()}
+                <div className="buttons">
+                    {this.renderRecordButton()}
+                    <Button onClick={this.play} icon="play_arrow" />
+                    <Button onClick={this.download} icon="cloud_download" />
                 </div>
                 <EventList />
             </div>
@@ -119,4 +130,3 @@ MissionControl.contextTypes = {
 export default MissionControl;
 
 const timestamp = () => new Date().getTime();
-

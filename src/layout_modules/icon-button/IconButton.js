@@ -8,7 +8,11 @@ export class IconButton extends Component {
     render() {
         const { icon, label } = this.props;
         return (
-            <div className="IconButton-container" onClick={this.props.onClick}>
+            <div
+                className="IconButton-container"
+                onClick={this.props.onClick}
+                data-hover={true}
+            >
                 <i className="icon material-icons">{icon}</i>
                 <div className="label">{label}</div>
             </div>

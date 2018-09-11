@@ -5,9 +5,8 @@ import classnames from "classnames";
 export class Around extends Component {
     state = {};
 
-    componentWillReceiveProps(props) {
-    }
-    
+    componentWillReceiveProps(props) {}
+
     style = () => {
         const { box = {} } = this.props;
 
@@ -24,9 +23,7 @@ export class Around extends Component {
 
         const exists = box.top;
 
-        const className = classnames("Around-container", {
-            hover: mode === "HOVER",
-            selected: mode === "SELECTED",
+        const className = classnames("Around-container", "selected", {
             exists: exists
         });
         return <div className={className} style={this.style()} />;

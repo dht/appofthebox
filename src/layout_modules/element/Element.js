@@ -58,16 +58,6 @@ export class Element extends Component {
         }
     };
 
-    onMouseEnter = (ev) => {
-        const {id} = this.props;
-        this.props.onMouseEnter(ev, id);
-    }
-
-    onMouseLeave = (ev) => {
-        const {id} = this.props;
-        this.props.onMouseLeave(ev, id);
-    }
-
     onClick = (ev) => {
         const {id} = this.props;
         this.props.onClick(ev, id);
@@ -82,11 +72,9 @@ export class Element extends Component {
         return (
             <div
                 data-ob="element"
-                data-hover="dynamic"
+                data-hover={true}
                 className="Element-container"
                 style={this.style()}
-                onMouseEnter={this.onMouseEnter}
-                onMouseLeave={this.onMouseLeave}
                 onClick={this.onClick}
                 onDoubleClick={this.onDoubleClick}
             >

@@ -5,7 +5,7 @@ import { crunchResolutions } from "../utils/style";
 import clone from "clone";
 import { PropertiesArray } from "../constants/allProperties";
 import moment from "moment";
-
+import * as pointer from "./pointer";
 export const recordStateSelector = state => state.recordState || {};
 
 export const nextIdSelector = createSelector(
@@ -33,6 +33,12 @@ export const currentEventIdSelector = createSelector(
     recordState => recordState.currentEventId
 );
 
+export const currentEventDurationSelector = createSelector(
+    recordStateSelector,
+    recordState => recordState.currentEventDuration
+);
+
+
 export const currentEventSelector = createSelector(
     timelineSelector,
     currentEventIdSelector,
@@ -54,25 +60,77 @@ export const eventSelector = createSelector(
 
         let time = moment();
 
-        return keys
-            .map((key, index) => {
-                const event = timeline[key],
-                    delta = event.ts - ts;
+        console.log("currentEventId ->", currentEventId);
 
-                time.minutes(0);
-                time.hours(0);
-                time.seconds(0);
-                time.milliseconds(delta);
-                const timeStr = time.format("mm:ss");
+        return keys.map((key, index) => {
+            const event = timeline[key],
+                delta = event.ts - ts;
 
-                return {
-                    ...event,
-                    index,
-                    timeStr,
-                    isCurrent: currentEventId === event.id,
-                    ts: delta
+            time.minutes(0);
+            time.hours(0);
+            time.seconds(0);
+            time.milliseconds(delta);
+            const timeStr = time.format("mm:ss");
+
+            return {
+                ...event,
+                index,
+                timeStr,
+                isAction: event.action && event.action.type,
+                isCurrent: currentEventId == event.id,
+                ts: delta
+            };
+        });
+    }
+);
+
+export const timelinePlaySelector = createSelector(
+    timelineSelector,
+    cursorSelector,
+    (timeline, lastCursor) => {
+        const keys = Object.keys(timeline);
+
+        let lastTs = 0;
+
+        return keys.map(key => {
+            const event = timeline[key],
+                { cursor, ts, action } = event,
+                { type, value } = action || {};
+
+            let cursorDuration = 0,
+                input = {};
+
+            let eventDuration = lastTs === 0 ? 0 : ts - lastTs;
+
+            if (cursor) {
+                cursorDuration = pointer.duration(lastCursor, cursor);
+                eventDuration = Math.max(eventDuration, cursorDuration);
+                lastCursor = cursor;
+            }
+
+            if (
+                type === "PATCH_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTIES"
+            ) {
+                const firstKey = Object.keys(value)[0];
+
+                input = {
+                    key: firstKey,
+                    selector: `[data-id='${firstKey}']`,
+                    value: value[firstKey]
                 };
-            })
-            .reverse();
+            }
+
+            lastTs = ts;
+
+            return {
+                ...event,
+                duration: {
+                    rest: eventDuration - cursorDuration,
+                    cursor: cursorDuration,
+                    total: eventDuration
+                },
+                input
+            };
+        });
     }
 );

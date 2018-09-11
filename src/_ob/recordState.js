@@ -1,10 +1,12 @@
 import * as selectors from "./selectors";
 import * as initialValues from "./initialValues";
+import * as pointer from "./pointer";
+import * as storage from "./storage";
+import * as dom from "./dom";
 
 export const eventTypes = {
     START: "START",
     CLICK: "CLICK",
-    HOVER: "HOVER",
     TYPE: "TYPE",
     ENTER: "ENTER",
     STOP: "STOP"
@@ -19,9 +21,10 @@ export const modes = {
 
 const initialState = {
     currentEventId: 0,
+    currentEventDuration: {},
     mode: modes.IDLE,
-    nextId: 1, 
-    timeline: {}, //initialValues.timeline,
+    nextId: 1,
+    timeline: storage.getJSON("timeline"),
     cursor: {
         left: 10,
         top: 10
@@ -30,7 +33,9 @@ const initialState = {
 
 const actionTypes = {
     ADD_EVENT: "ADD_EVENT",
+    SET_TIMELINE: "SET_TIMELINE",
     SET_CURRENT_EVENT_ID: "SET_CURRENT_EVENT_ID",
+    SET_CURRENT_EVENT_DURATION: "SET_CURRENT_EVENT_DURATION",
     SET_CURSOR: "SET_CURSOR",
     SET_MODE: "SET_MODE",
     SET_NEXT_ID: "SET_NEXT_ID"
@@ -61,6 +66,12 @@ export const timeline = (state = initialState, action) => {
 
 export const recordState = (state = initialState, action) => {
     switch (action.type) {
+        case actionTypes.SET_TIMELINE:
+            return {
+                ...state,
+                timeline: action.value
+            };
+
         case actionTypes.SET_CURRENT_EVENT_ID:
             return {
                 ...state,
@@ -85,6 +96,12 @@ export const recordState = (state = initialState, action) => {
                 nextId: action.value
             };
 
+        case actionTypes.SET_CURRENT_EVENT_DURATION:
+            return {
+                ...state,
+                currentEventDuration: action.value
+            };
+
         case actionTypes.ADD_EVENT:
             return {
                 ...state,
@@ -104,9 +121,24 @@ export const addEvent = (id, value) => {
     };
 };
 
+export const setTimeline = value => {
+    return {
+        type: actionTypes.SET_TIMELINE,
+
+        value
+    };
+};
+
 export const setCurrentEventId = value => {
     return {
         type: actionTypes.SET_CURRENT_EVENT_ID,
+        value
+    };
+};
+
+export const setCurrentEventDuration = value => {
+    return {
+        type: actionTypes.SET_CURRENT_EVENT_DURATION,
         value
     };
 };
@@ -142,6 +174,11 @@ export const nudgeId = () => {
 
 export const newEvent = value => {
     return (dispatch, getState) => {
+        const state = getState(),
+            mode = selectors.modeSelector(state);
+
+        if (mode !== modes.RECORDING) return;
+
         const nextId = selectors.nextIdSelector(getState());
 
         dispatch(addEvent(nextId, { id: nextId, ts: timestamp(), ...value }));
@@ -149,48 +186,67 @@ export const newEvent = value => {
     };
 };
 
+export const setCurrentEvent = value => {
+    return (dispatch, getState) => {
+        const { id, duration } = value || {};
+        dispatch(setCurrentEventId(id || 0));
+        dispatch(setCurrentEventDuration(duration || {}));
+    };
+};
+
 export const play = value => {
     return async (dispatch, getState) => {
         const state = getState(),
-            { recordState } = state,
-            { timeline } = recordState;
+            timeline = selectors.timelinePlaySelector(state),
+            mode = selectors.modeSelector(state);
+
+        if (mode === modes.PLAYING) return;
 
         dispatch(setMode(modes.PLAYING));
-        dispatch(setCurrentEventId(0));
-        dispatch(setCursor({ top: 100, left: 500 }));
-
-        let lastTs = 0;
+        dispatch(setCurrentEvent(null));
 
         for (let key in timeline) {
             console.log("key ->", key);
 
-            dispatch(setCurrentEventId(key));
-
             const event = timeline[key],
-                { type, cursor, action, ts } = event;
+                { type, cursor, action, duration, input } = event;
 
-            const delta = Math.max(lastTs === 0 ? 0 : ts - lastTs, 200);
-
-            console.log("delta ->", delta, ts - lastTs, ts, lastTs);
-            console.log("action, type ->", action, type, ts);
+            dispatch(setCurrentEvent(event));
 
             switch (type) {
                 case "CLICK":
-                case "HOVER":
-                    dispatch(setCursor({ ...cursor, duration: delta }));
-                    await delay(delta);
+                    await timeout(duration.rest);
+                    dispatch(
+                        setCursor({ ...cursor, duration: duration.cursor })
+                    );
+                    await timeout(duration.cursor);
+                    break;
+
+                case "PATCH_BUCKET_COMPONENT_ELEMENT_RESOLUTION_PROPERTIES":
+                    console.log("duration ->", duration);
+
+                    const el = document.querySelector(input.selector);
+
+                    const delay = await dom.type(el, input.value);
+
+                    await timeout(duration.total - delay);
+
+                    await dom.blur(el, 10);
+                    dispatch(action);
+
                     break;
 
                 default:
                     if (action) {
-                        await delay(500);
+                        await timeout(duration.total);
                         dispatch(action);
                     }
                     break;
             }
-
-            lastTs = ts;
         }
+
+        dispatch(setMode(modes.STOPPED));
+        dispatch(setCurrentEvent(null));
     };
 };
 
@@ -210,10 +266,35 @@ export const record = value => {
 };
 
 const timestamp = () => new Date().getTime();
-const delay = mils => {
+
+export const save = value => {
+    return (dispatch, getState) => {
+        const state = getState(),
+            timeline = selectors.timelineSelector(state);
+
+        storage.saveJSON("timeline", timeline);
+    };
+};
+
+export const load = value => {
+    return (dispatch, getState) => {
+        const timeline = storage.getJSON("timeline");
+
+        dispatch(setTimeline(timeline));
+    };
+};
+
+export const clear = value => {
+    return (dispatch, getState) => {
+        storage.saveJSON("timeline", {});
+        dispatch(setTimeline({}));
+    };
+};
+
+const timeout = mils => {
     return new Promise(resolve => {
         setTimeout(() => {
             resolve(true);
-        }, mils);
+        }, Math.max(mils, 0));
     });
 };

@@ -1,31 +1,47 @@
 .EventList-container {
     overflow: auto;
-    color:#eee;
+    color: #eee;
 
     .inner {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+
         .event {
             border-bottom: 1px solid gray;
-            padding: 6px 10px;
+            border-right: 1px solid gray;
+            padding: 3px 5px;
             display: flex;
             flex-direction: row;
             align-items: center;
+            width: 18px;
+            color: greenyellow;
 
             .id {
                 padding: 5px;
-                width:12px;
-                font-size:10px;
-                color:greenyellow;
+                width: 12px;
+                font-size: 12px;
             }
 
             .type {
                 padding: 5px;
-                font-size:10px;
-                color:pink;
+                font-size: 10px;
+                color: pink;
             }
 
             .ts {
                 padding: 5px;
-                width:50px;
+                width: 50px;
+            }
+
+            &.action {
+                color: pink;
+            }
+
+            &.selected {
+                background-color:pink;
+                color:#333;
             }
         }
     }

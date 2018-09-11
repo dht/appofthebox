@@ -68,3 +68,63 @@ export const removeEventListener = (selector, eventName, method) => {
 
     elements.forEach(el => el.removeEventListener(eventName, method));
 };
+
+export const type = async (el, value) => {
+    if (!el) return;
+
+    const str = String(value || "");
+
+    let delay = 0;
+
+    await focus(el, 100);
+    await select(el, 100);
+    delay += 200;
+
+    for (let i of nachman(str)) {
+        await setInputValue(el, i, 200);
+        delay += 200;
+    }
+
+    return delay;
+};
+
+const inputEvent = async (el, event, mils) => {
+    await timeout(mils);
+
+    switch (event) {
+        case "focus":
+            return el.focus();
+        case "blur":
+            return el.blur();
+        case "select":
+            return el.select();
+    }
+};
+
+const nachman = str => {
+    return str.split("").reduce((output, key) => {
+        const last = output[output.length - 1] || "";
+        output.push(last + key);
+        return output;
+    }, []);
+};
+
+export const blur = (el, delay) => inputEvent(el, "blur", delay);
+export const focus = (el, delay) => inputEvent(el, "focus", delay);
+export const select = (el, delay) => inputEvent(el, "select", delay);
+
+const setInputValue = async (el, value, delay) => {
+    await timeout(delay);
+
+    if (el) {
+        el.value = value;
+    }
+};
+
+const timeout = mils => {
+    return new Promise(resolve => {
+        setTimeout(() => {
+            resolve(true);
+        }, mils);
+    });
+};

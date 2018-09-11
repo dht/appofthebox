@@ -136,15 +136,6 @@ export const resolutionsSelector = createSelector(
     }
 );
 
-export const hoverBoxSelector = createSelector(
-    editorStateSelector,
-    editorState => ({
-        elementId: editorState.currentHoverId,
-        box: editorState.hoverBox,
-        rnd: editorState.rnd
-    })
-);
-
 export const selectedBoxSelector = createSelector(
     editorStateSelector,
     editorState => ({

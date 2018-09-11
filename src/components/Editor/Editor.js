@@ -45,8 +45,7 @@ export class Editor extends Component {
                         {x}x{y}
                     </div>
                     <Element id={1} />
-                    <Around mode="HOVER" />
-                    <Around mode="SELECTED" />
+                    <Around />
                 </div>
 
                 <Draggable defaultPosition={{ x: 50, y: -50 }}>

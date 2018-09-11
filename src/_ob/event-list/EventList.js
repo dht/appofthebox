@@ -19,14 +19,19 @@ export class EventList<props> extends Component {
                 <div className="inner">
                     {timeline.map(event => {
                         const className = classnames("event", {
-                            selected: event.isCurrent
+                            selected: event.isCurrent,
+                            action: event.isAction
                         });
 
                         return (
-                            <div key={event.id} className={className}>
+                            <div
+                                key={event.id}
+                                className={className}
+                                title={`${event.id} ${event.timeStr} ${
+                                    event.type
+                                }`}
+                            >
                                 <div className="id">{event.id}</div>
-                                <div className="ts">{event.timeStr}</div>
-                                <div className="type">{event.type}</div>
                             </div>
                         );
                     })}

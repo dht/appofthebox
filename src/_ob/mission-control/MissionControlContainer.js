@@ -6,7 +6,9 @@ import * as selectors from "../selectors";
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        mode: selectors.modeSelector(state)
+        cursor: selectors.cursorSelector(state),
+        mode: selectors.modeSelector(state),
+        currentDuration: selectors.currentEventDurationSelector(state),
     };
 };
 
@@ -19,14 +21,16 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(actions.play());
         },
         record: () => {
+            dispatch(actions.clear());
             dispatch(actions.record());
         },
         stop: () => {
             dispatch(actions.stop());
+            dispatch(actions.save());
         },
         setCursor: (cursor) => {
             dispatch(actions.setCursor(cursor));
-        }
+        },
     };
 };
 

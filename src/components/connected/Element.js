@@ -20,19 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onMouseEnter: (ev, id) => {
-            ev.stopPropagation();
-            dispatch(
-                patchEditorState({
-                    currentHoverId: id,
-                    hoverBox: box(ev)
-                    // hoverElement: element(ev)
-                })
-            );
-        },
         onClick: (ev, id) => {
-            ev.stopPropagation();
-
             api.setElementId(id);
 
             dispatch(
@@ -56,9 +44,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                 })
             );
         },
-        onMouseLeave: ev => {
-            dispatch(patchEditorState({ currentHoverId: 0, hoverBox: {} }));
-        }
     };
 };
 

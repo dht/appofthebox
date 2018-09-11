@@ -4,6 +4,7 @@ import "./Recorder.css";
 import PropTypes from "prop-types";
 import { ReactMic } from "react-mic";
 import { modes } from "../recordState";
+import * as storage from "../storage";
 
 type props = {};
 
@@ -32,12 +33,11 @@ export class Recorder<props> extends Component {
         this.recordedChunks = [];
     };
 
-    play = () => {
-        if (!this.recordedChunks || this.recordedChunks.length === 0) return;
-        
+    play = async () => {
         const audioElement = document.getElementById("audio");
-        var superBuffer = new Blob(this.recordedChunks);
-        audioElement.src = window.URL.createObjectURL(superBuffer);
+        const blob = await storage.getBlob("record");
+
+        audioElement.src = window.URL.createObjectURL(blob);
     };
 
     download = () => {
@@ -60,6 +60,7 @@ export class Recorder<props> extends Component {
 
     onStop(recordedBlob) {
         console.log("recordedBlob is: ", recordedBlob);
+        storage.saveBlob("record", recordedBlob.blob);
     }
 
     renderRecord() {
@@ -71,6 +72,7 @@ export class Recorder<props> extends Component {
                 onData={this.onData}
                 strokeColor="#fff"
                 backgroundColor="#333"
+
             />
         );
     }

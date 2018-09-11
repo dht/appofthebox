@@ -57,6 +57,8 @@ export class Input extends Component {
     onChange = ev => {
         const { kind, type } = this.state;
 
+        console.log('true ->', true);
+
         const immediate = type === "color";
 
         this.setState({ value: ev.target.value });
@@ -112,6 +114,7 @@ export class Input extends Component {
             <div className="Input-container">
                 <input
                     ref="input"
+                    data-id={kind}
                     {...this.list()} // must not have property list if empty for autocomplete
                     value={value || ""}
                     type={type}
