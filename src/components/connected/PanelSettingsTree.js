@@ -24,9 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onToggle: id => {
-            console.log("id ->", id);
-        }
+        onToggle: id => {}
     };
 };
 

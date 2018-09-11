@@ -20,17 +20,6 @@ export class Context extends Component {
     getChildContext = () => {
         const { locale } = this.state;
 
-        const materialArrows =
-            locale === "he"
-                ? {
-                      left: "keyboard-arrow-right",
-                      right: "keyboard-arrow-left"
-                  }
-                : {
-                      left: "keyboard-arrow-left",
-                      right: "keyboard-arrow-right"
-                  };
-
         return {
             isInternetOn: true,
             locale,
@@ -42,7 +31,7 @@ export class Context extends Component {
             navMethods: {},
             alignStyle: "left", //getLanguageTextAlign(),
             arrowName: locale === "he" ? "arrow-left2" : "arrow-right2",
-            materialArrows: materialArrows
+            materialArrows: {}
         };
     };
 

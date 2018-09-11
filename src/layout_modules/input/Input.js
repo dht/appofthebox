@@ -57,8 +57,6 @@ export class Input extends Component {
     onChange = ev => {
         const { kind, type } = this.state;
 
-        console.log('true ->', true);
-
         const immediate = type === "color";
 
         this.setState({ value: ev.target.value });

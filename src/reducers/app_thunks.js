@@ -127,8 +127,6 @@ export const addElement = type => {
         const state = getState(),
             newItemData = selectors.newItemSelector(state);
 
-        console.log("newItemData ->", newItemData);
-
         const factory = templates[type];
 
         if (!factory || !newItemData) return;

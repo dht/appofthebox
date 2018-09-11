@@ -34,9 +34,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onClick: id => {
-            console.log("id ->", id);
-        }
+        onClick: id => {}
     };
 };
 
