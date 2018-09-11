@@ -35,11 +35,13 @@ export class Panel extends Component {
                     {config.tabs.map(tab => (
                         <TabPane tab={tab.name} key={tab.id}>
                             <div className="tab-inner-page">
-                                {tab.content.map(content => (
-                                    <div>
-                                        {content.header ? <div className="headers">
-                                            {content.header}
-                                        </div> : null}
+                                {tab.content.map((content, index) => (
+                                    <div key={index}>
+                                        {content.header ? (
+                                            <div className="headers">
+                                                {content.header}
+                                            </div>
+                                        ) : null}
                                         <div className="content">
                                             {content.component}
                                         </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import { connect } from "react-redux";
 import Around from "../../layout_modules/around/Around";
 import { selectedBoxSelector } from "../../selectors/selectors";

@@ -1,46 +1,44 @@
-import React from "react";
-import {connect} from "react-redux";
-import Actions from '../../layout_modules/actions/Actions';
+import { connect } from "react-redux";
+import Actions from "../../layout_modules/actions/Actions";
 
 const config = {
     buttons: [
         {
             id: "colors",
             icon: "colorize",
-            label: "Colors",
+            label: "Colors"
         },
         {
             id: "data",
             icon: "view_list",
-            label: "Data",
+            label: "Data"
         },
         {
             id: "theme",
             icon: "color_lens",
-            label: "Theme",
+            label: "Theme"
         },
         {
             id: "export",
             icon: "cloud_download",
-            label: "Export",
+            label: "Export"
         }
-       
     ]
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
     return {
         config
     };
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onClick: (id) => {
-            console.log('id ->', id);
-        },
-    }
-}
+        onClick: id => {
+            console.log("id ->", id);
+        }
+    };
+};
 
 export default connect(
     mapStateToProps,

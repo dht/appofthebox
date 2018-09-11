@@ -1,4 +1,3 @@
-import React from "react";
 import { connect } from "react-redux";
 import PanelSettings from "../../layout_modules/panel-settings/PanelSettings";
 
@@ -16,18 +15,18 @@ const mapStateToProps = (state, ownProps) => {
             {
                 id: "simulate_list",
                 label: "Simulate list"
-            },
+            }
         ]
     };
 
-    return {config};
+    return { config };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onToggle: (id) => {
-            console.log('id ->', id);
-        },
+        onToggle: id => {
+            console.log("id ->", id);
+        }
     };
 };
 

@@ -1,16 +1,11 @@
-import React, {Component} from 'react';
-import './Tree.css';
+import React, { Component } from "react";
+import "./Tree.css";
 
 export class Tree extends Component {
-
-    state = {
-    }
+    state = {};
 
     render() {
-        return (
-            <div className="Tree-container">               
-            </div>
-        );
+        return <div className="Tree-container" />;
     }
 }
 

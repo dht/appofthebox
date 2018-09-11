@@ -39,6 +39,3 @@ PhoneList(storiesOf, module, action);
 Properties(storiesOf, module, action);
 StateView(storiesOf, module, action);
 Tree(storiesOf, module, action);
-
-
-

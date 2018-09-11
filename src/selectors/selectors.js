@@ -71,7 +71,7 @@ export const elementsSelector = createSelector(
             ).properties;
 
             newElement.resolution = resolutionId;
-            
+
             return newElement;
         });
     }

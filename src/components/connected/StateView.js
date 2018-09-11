@@ -1,19 +1,17 @@
-import React from "react";
-import {connect} from "react-redux";
-import StateView from '../../layout_modules/state-view/StateView';
+import { connect } from "react-redux";
+import StateView from "../../layout_modules/state-view/StateView";
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        json: state,
+        json: state
     };
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        method: () => {
-        },
-    }
-}
+        method: () => {}
+    };
+};
 
 export default connect(
     mapStateToProps,

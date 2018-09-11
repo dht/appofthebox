@@ -1,18 +1,15 @@
-import React from "react";
-import {connect} from "react-redux";
-import ModalIconLibrary from '../../layout_modules/modal-icon-library/ModalIconLibrary';
+import { connect } from "react-redux";
+import ModalIconLibrary from "../../layout_modules/modal-icon-library/ModalIconLibrary";
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-    };
-}
+    return {};
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        method: () => {
-        },
-    }
-}
+        method: () => {}
+    };
+};
 
 export default connect(
     mapStateToProps,

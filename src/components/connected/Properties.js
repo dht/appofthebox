@@ -1,6 +1,5 @@
-import React from "react";
-import {connect} from "react-redux";
-import Properties from '../../layout_modules/properties/Properties';
+import { connect } from "react-redux";
+import Properties from "../../layout_modules/properties/Properties";
 import * as selectors from "../../selectors/selectors";
 import * as thunks from "../../reducers/app_thunks";
 
@@ -10,14 +9,13 @@ const mapStateToProps = (state, ownProps) => {
     };
 };
 
-
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onValue: (value) => {
+        onValue: value => {
             dispatch(thunks.patchProperty(value));
-          }
-    }
-}
+        }
+    };
+};
 
 export default connect(
     mapStateToProps,

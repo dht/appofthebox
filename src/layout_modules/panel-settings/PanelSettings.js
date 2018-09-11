@@ -12,6 +12,7 @@ export class PanelSettings extends Component {
             <div className="PanelSettings-container">
                 {config.settings.map(setting => (
                     <Checkbox
+                        key={setting.id}
                         onClick={() => this.props.toggle(setting.id)}
                         checked={setting.checked}
                         label={setting.label}

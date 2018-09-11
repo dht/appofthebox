@@ -1,4 +1,3 @@
-import React from "react";
 import { connect } from "react-redux";
 import Element from "../../layout_modules/element/Element";
 import { elementsSelector } from "../../selectors/selectors";
@@ -43,7 +42,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
                     }
                 })
             );
-        },
+        }
     };
 };
 

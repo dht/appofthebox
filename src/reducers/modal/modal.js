@@ -1,6 +1,6 @@
 export const types = {
     ICON_GALLERY: "ICON_GALLERY",
-    "DATA": "DATA"
+    DATA: "DATA"
 };
 
 const initialState = {

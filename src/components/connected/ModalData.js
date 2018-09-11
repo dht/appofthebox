@@ -1,18 +1,15 @@
-import React from "react";
-import {connect} from "react-redux";
-import ModalData from '../../layout_modules/modal-data/ModalData';
+import { connect } from "react-redux";
+import ModalData from "../../layout_modules/modal-data/ModalData";
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-    };
-}
+    return {};
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        method: () => {
-        },
-    }
-}
+        method: () => {}
+    };
+};
 
 export default connect(
     mapStateToProps,

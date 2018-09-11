@@ -1,6 +1,5 @@
-import React from "react";
-import {connect} from "react-redux";
-import PanelSettings from '../../layout_modules/panel-settings/PanelSettings';
+import { connect } from "react-redux";
+import PanelSettings from "../../layout_modules/panel-settings/PanelSettings";
 
 const mapStateToProps = (state, ownProps) => {
     const config = {
@@ -16,20 +15,20 @@ const mapStateToProps = (state, ownProps) => {
             {
                 id: "scrollable",
                 label: "Is scrollable"
-            },
+            }
         ]
     };
 
-    return {config};
-}
+    return { config };
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        onToggle: (id) => {
-            console.log('id ->', id);
-        },
-    }
-}
+        onToggle: id => {
+            console.log("id ->", id);
+        }
+    };
+};
 
 export default connect(
     mapStateToProps,

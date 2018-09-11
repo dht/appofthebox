@@ -15,14 +15,6 @@ const inBox = (box, x, y) => {
     );
 };
 
-const classExist = (el, className) => {
-    return el.className.indexOf(className + " ") >= 0;
-};
-
-const addClass = (el, className) => {
-    return el.classList.add(className);
-};
-
 export const addClassIfInBox = (el, box, x, y, className) => {
     const isInBox = inBox(box, x, y),
         isClassThere = el.classList.contains(className);
@@ -98,6 +90,8 @@ const inputEvent = async (el, event, mils) => {
             return el.blur();
         case "select":
             return el.select();
+        default:
+            break;
     }
 };
 

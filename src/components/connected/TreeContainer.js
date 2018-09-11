@@ -1,18 +1,15 @@
-import React from "react";
-import {connect} from "react-redux";
-import Tree from '../../layout_modules/tree/Tree';
+import { connect } from "react-redux";
+import Tree from "../../layout_modules/tree/Tree";
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-    };
-}
+    return {};
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        method: () => {
-        },
-    }
-}
+        method: () => {}
+    };
+};
 
 export default connect(
     mapStateToProps,

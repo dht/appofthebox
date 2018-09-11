@@ -9,7 +9,9 @@ import Recorder from "../recorder/RecorderContainer";
 import EventList from "../event-list/EventListContainer";
 import { Button } from "../button/Button";
 
-type props = {};
+type props = {
+    cursor: object
+};
 
 export class MissionControl<props> extends Component {
     static defaultProps: props = {};

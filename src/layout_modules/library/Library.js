@@ -1,16 +1,11 @@
-import React, {Component} from 'react';
-import './Library.css';
+import React, { Component } from "react";
+import "./Library.css";
 
 export class Library extends Component {
-
-    state = {
-    }
+    state = {};
 
     render() {
-        return (
-            <div className="Library-container">               
-            </div>
-        );
+        return <div className="Library-container" />;
     }
 }
 

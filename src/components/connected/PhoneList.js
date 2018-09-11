@@ -1,4 +1,3 @@
-import React from "react";
 import { connect } from "react-redux";
 import PhoneList from "../../layout_modules/phone-list/PhoneList";
 import * as selectors from "../../selectors/selectors";

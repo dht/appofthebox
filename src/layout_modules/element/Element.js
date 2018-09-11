@@ -6,8 +6,7 @@ import { parseStyle } from "../../utils/style";
 export class Element extends Component {
     state = {};
 
-    componentDidMount() {
-    }
+    componentDidMount() {}
 
     componentWillUnmount() {}
 
@@ -47,7 +46,7 @@ export class Element extends Component {
             ));
     };
 
-    onDoubleClick = (ev) => {
+    onDoubleClick = ev => {
         const { id, element } = this.props;
         const { type } = element;
 
@@ -58,13 +57,13 @@ export class Element extends Component {
         }
     };
 
-    onClick = (ev) => {
-        const {id} = this.props;
+    onClick = ev => {
+        const { id } = this.props;
         this.props.onClick(ev, id);
-    }
+    };
 
     render() {
-        const {id} = this.props;
+        const { id } = this.props;
         const element = this.getElement();
 
         if (!element) return null;
